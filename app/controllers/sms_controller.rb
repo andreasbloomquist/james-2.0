@@ -12,6 +12,12 @@ class SmsController < ApplicationController
 
   def received
     sender = params[:From]
-    create_user(params) if new_user?(sender)
+    body = params[:Body]
+    
+    if new_user?(sender)
+      create_user(params)
+    else
+      send_message sender, body
+    end
   end
 end
