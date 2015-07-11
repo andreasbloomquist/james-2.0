@@ -88,7 +88,7 @@ module SmsHelper
 
     # Same logic as above
     elsif questions[:case_four]
-      @user_lead.column(:q_four, response)
+      @user_lead.update_column(:q_four, response)
 
       @@client.messages.create({
         :from => '+14158010226', 

@@ -11,7 +11,7 @@ module BrokersHelper
 
   def trigger_lead(lead)
     @brokers = Broker.all
-    @message = "New lead - #{lead.q_one}, #{lead.q_two}, #{lead.q_three}, #{lead.q_four}, #{lead.q_five}, Click here to respond #{lead.response_url}"
+    @message = "New lead - #{lead.q_one}, #{lead.q_two} ppl, #{lead.q_three}, #{lead.q_four}, Notes: #{lead.q_five}, Click here to respond #{lead.response_url}"
 
     @brokers.each { |broker| send_lead(broker.phone_number, @message) }
   end
