@@ -1,13 +1,26 @@
-<nav>
-	<% if logged_in? %>
-		<%= link_to "Admin", admin_path %> |
-		<%= link_to "Brokers", brokers_path %>
-		|
-		<%= link_to "New Broker", new_broker_path %>
-		|
-		<%= link_to "Logout", logout_path %>
-		|
-	<% else %>
-		<%= link_to "Login", login_path %> |
-	<% end %>
-</nav>
+<% if logged_in? %>
+  <nav class="top-bar" data-topbar role="navigation" data-options="sticky_on: large">
+      <ul class="title-area">
+        <li class="name">
+          <h1><%= link_to "Admin Home", admin_path %></h1>
+        </li>
+        <li class="toggle-topbar menu-icon"><a href="#"><span></span></a></li>
+      </ul>
+
+      <section class="top-bar-section">
+        <!-- Right Nav Section -->
+        <ul class="right">
+          <li class="has-dropdown">
+            <a href="#">Hi, <%= current_admin.broker.first_name %></a>
+            <ul class="dropdown">
+              <li><%= link_to 'Brokers', brokers_path %></li>
+              <li><%= link_to 'Add Broker', new_broker_path %></li>
+              <li class="active"><%= link_to 'Logout', logout_path %></li>
+            </ul>
+          </li>
+        </ul>
+        <!-- Left Nav Section -->
+      </section>
+
+    </nav>
+<% end %>
