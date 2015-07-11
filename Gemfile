@@ -4,6 +4,8 @@ ruby '2.2.2'
 gem 'dotenv-rails'
 
 gem 'twilio-ruby'
+gem 'bitly'
+
 gem 'foundation-rails'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.2'
