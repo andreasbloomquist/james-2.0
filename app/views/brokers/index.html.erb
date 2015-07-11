@@ -1,0 +1,25 @@
+<%= render "layouts/header" %>
+	<h1>Brokers page</h1>
+
+	<table>
+	  <thead>
+	    <tr>
+	      <th width="200">Name</th>
+	      <th>Email</th>
+	      <th width="150">Number</th>
+	      <th width="150">Company</th>
+	      <th width="150">Date added</th>
+	    </tr>
+	  </thead>
+	  <tbody>
+	  	<% @brokers.each do |broker| %>
+		    <tr>
+		      <td><%= broker.first_name %> <%= broker.last_name %></td>
+		      <td><%= broker.email %></td>
+		      <td><%= broker.phone_number %></td>
+		      <td><%= broker.company %></td>
+		      <td><%= broker.created_at %></td>
+		    </tr>
+	    <% end %>
+	  </tbody>
+	</table>
