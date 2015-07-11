@@ -1,0 +1,30 @@
+<%= form_for @property, url: '/sessions', method: 'post' do |f| %>
+
+  <%= f.label :address %>
+  <%= f.text_field :address, autofocus: true, required: true %>
+  
+  <%= f.label :sub_market %>
+  <%= f.select :sub_market, options_for_select([["SoMa", "soma"], ["FiDi", "fidi"], ["Civic Center", "civic center"], ["Mission", "mission"], ["Hayes Valley", "hayes valley"]]), {prompt: "Select sub market"}, {required: 'true'}%>
+
+  <%= f.label :type %>
+  <%= f.select :type, options_for_select([["SoMa", "soma"], ["FiDi", "fidi"], ["Civic Center", "civic center"], ["Mission", "mission"], ["Hayes Valley", "hayes valley"]]), {prompt: "Select type of type of space"}, {required: 'true'}%>
+
+  <%= f.label :sq_ft %>
+  <%= f.number_field :sq_ft, required: true %>
+  
+  <%= f.label :available %>
+  <%= f.datetime_local_field :available, required: true %>
+
+  <%= f.label :min %>
+  <%= f.number_field :min, required: true %>
+  <%= f.label :max %>
+  <%= f.number_field :max, required: true %>
+
+  <%= f.label :description %>
+  <%= f.text_area :description %>
+
+
+
+
+  <%= f.submit "Submit to user" , class: "button"%>
+<% end %>
