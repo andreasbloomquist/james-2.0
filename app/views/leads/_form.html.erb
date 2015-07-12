@@ -1,4 +1,4 @@
-<%= form_for @property, url: '/sessions', method: 'post' do |f| %>
+<%= form_for @property, url: '/properties/', method: 'post' do |f| %>
 
   <%= f.label :address %>
   <%= f.text_field :address, autofocus: true, required: true %>
@@ -6,25 +6,27 @@
   <%= f.label :sub_market %>
   <%= f.select :sub_market, options_for_select([["SoMa", "soma"], ["FiDi", "fidi"], ["Civic Center", "civic center"], ["Mission", "mission"], ["Hayes Valley", "hayes valley"]]), {prompt: "Select sub market"}, {required: 'true'}%>
 
-  <%= f.label :type %>
-  <%= f.select :type, options_for_select([["SoMa", "soma"], ["FiDi", "fidi"], ["Civic Center", "civic center"], ["Mission", "mission"], ["Hayes Valley", "hayes valley"]]), {prompt: "Select type of type of space"}, {required: 'true'}%>
+  <%= f.label :property_type %>
+  <%= f.select :property_type, options_for_select([["SoMa", "soma"], ["FiDi", "fidi"], ["Civic Center", "civic center"], ["Mission", "mission"], ["Hayes Valley", "hayes valley"]]), {prompt: "Select type of type of space"}, {required: 'true'}%>
 
   <%= f.label :sq_ft %>
   <%= f.number_field :sq_ft, required: true %>
-  
-  <%= f.label :available %>
-  <%= f.datetime_local_field :available, required: true %>
 
+  <%= f.label :rent_price %>
+  <%= f.number_field :rent_price, required: true %>
+
+  <%= f.label :available %>
+  <%= f.text_field :available, class: "date", data: { provide: 'datetimepicker' } %>
   <%= f.label :min %>
   <%= f.number_field :min, required: true %>
+
   <%= f.label :max %>
   <%= f.number_field :max, required: true %>
 
   <%= f.label :description %>
   <%= f.text_area :description %>
 
-
-
+  <%= f.hidden_field :lead_id, :value => @lead.id %>
 
   <%= f.submit "Submit to user" , class: "button"%>
 <% end %>

@@ -151,4 +151,28 @@ module SmsHelper
     create_log(params)
     render nothing: true
 	end
+
+  def send_property(to, property)
+    user = User.find_by_phone_number(to)
+    
+    property_found_msg = "Hey #{user.name}! James, here. Good news, I’ve found properties for you that work. A broker validated these and just sent them in. Here they are:"
+    property_details_msg = "#{property.sq_ft}sq ft #{property.property_type} in #{property.sub_market} for #{property.max} months at #{property.rent_price}/ft starting rent - vailable #{property.available}."
+    broker_msg = "Here's what the broker said, '#{property.description}'. Reply with #{property.response_code} to connect with the broker."
+
+    @@client.messages.create({
+        :from => '+14158010226', 
+        :to => to, 
+        :body => property_found_msg
+        })
+    @@client.messages.create({
+        :from => '+14158010226', 
+        :to => to, 
+        :body => property_details_msg
+        })
+    @@client.messages.create({
+        :from => '+14158010226', 
+        :to => to,
+        :body => broker_msg
+        })
+  end
 end
