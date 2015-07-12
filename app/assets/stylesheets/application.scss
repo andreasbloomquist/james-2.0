@@ -1,3 +1,5 @@
+@import url(http://fonts.googleapis.com/css?family=Quattrocento);
+@import url(http://fonts.googleapis.com/css?family=Fanwood+Text);
 @import "foundation_and_overrides";
 @import 'foundation-icons';
 /*
@@ -13,11 +15,21 @@ body{
 img#james-logo{
 	width: 27rem;
 }
+#title{
+	color: white;
+	font-size: 4rem;
+	font-family: 'Quattrocento', serif;
+	margin-bottom: 0;
+}
+#head-text{
+	text-align: center;
+	font-family: 'Fanwood Text', serif;
+}
 #number-container{
 	text-align: center;
 	background-color: rgb(0,204,204);
 	border-radius: .5rem;
-	padding: .5rem 0 .5rem 0;
+	padding: .25rem 0 .25rem 0;
 	margin: 0 auto;
 	margin-top: 1rem;
 }
@@ -29,4 +41,17 @@ img#james-logo{
 }
 img.phone_icon{
 	height: 2.4rem;
+}
+
+// Media queries
+@media (max-width: 1025	px) {
+
+@media (max-width: 420px) {
+	#title{
+		font-size: 3.5rem;
+	}
+	img.phone_icon{
+		height: 2rem;
+	}
+}
 }
