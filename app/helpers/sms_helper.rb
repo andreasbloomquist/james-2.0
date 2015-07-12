@@ -217,7 +217,7 @@ module SmsHelper
     user = User.find_by_phone_number(to)
     
     property_found_msg = "Hey #{user.name}! James, here. Good news, I’ve found properties for you that work. A broker validated these and just sent them in. Here they are:"
-    property_details_msg = "#{property.sq_ft}sq ft #{property.property_type} in #{property.sub_market} for #{property.max} months at #{property.rent_price}/ft starting rent - vailable #{property.available}."
+    property_details_msg = "#{property.sq_ft}sq ft #{property.property_type} in #{property.sub_market} for #{property.max} months at #{property.rent_price}/ft starting rent - vailable #{property.available.strftime("%m/%d/%y")}."
     broker_msg = "Here's what the broker said, '#{property.description}'. Reply with #{property.response_code} to connect with the broker."
 
     @@client.messages.create({

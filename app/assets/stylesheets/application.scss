@@ -1,5 +1,5 @@
-@import url(http://fonts.googleapis.com/css?family=Quattrocento);
-@import url(http://fonts.googleapis.com/css?family=Fanwood+Text);
+@import url(http://fonts.googleapis.com/css?family=Muli);
+@import url(http://fonts.googleapis.com/css?family=Playfair+Display);
 @import "foundation_and_overrides";
 @import 'foundation-icons';
 /*
@@ -9,21 +9,38 @@
  *= require_tree .
  *= require_self
  */
+$primary-font: 'Muli', sans-serif;
+$secondary-font: 'Playfair Display', serif;
 body{
 	background-color: rgba(255,67,63,0.75);
 }
 img#james-logo{
-	width: 27rem;
+	width: 25rem;
 }
 #title{
 	color: white;
 	font-size: 4rem;
-	font-family: 'Quattrocento', serif;
+	font-family: $primary-font;
 	margin-bottom: 0;
 }
 #head-text{
 	text-align: center;
-	font-family: 'Fanwood Text', serif;
+}
+#hiw-container{
+	background-color:	#00be7e;
+	margin-top: 2rem;
+	padding: 2rem;
+}
+#extra-cta{
+	background-color: rgb(0,204,204);
+	padding: 2rem;
+}
+#james-faq{
+	padding: 2rem;
+	background-color: rgb(255,67,63);
+}
+#subtitle{
+	font-family: $secondary-font;
 }
 #number-container{
 	text-align: center;
@@ -37,21 +54,29 @@ img#james-logo{
 	font-size: 2.4rem;
 }
 #text-cta{
+	font-family: $secondary-font;
 	color: white;
 }
 img.phone_icon{
 	height: 2.4rem;
 }
+#examples-container{
+	background-color: rgba(255,222,0,1);
+	padding: 2rem;
+}
+.faq-q{
+	font-weight: bold;
+}
 
 // Media queries
-@media (max-width: 1025	px) {
-
 @media (max-width: 420px) {
 	#title{
-		font-size: 3.5rem;
+		font-size: 3.25rem;
 	}
 	img.phone_icon{
 		height: 2rem;
 	}
-}
+	#phone{
+		font-size: 2rem;
+	}
 }

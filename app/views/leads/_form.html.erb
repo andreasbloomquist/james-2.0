@@ -7,7 +7,7 @@
   <%= f.select :sub_market, options_for_select([["SoMa", "soma"], ["FiDi", "fidi"], ["Civic Center", "civic center"], ["Mission", "mission"], ["Hayes Valley", "hayes valley"]]), {prompt: "Select sub market"}, {required: 'true'}%>
 
   <%= f.label :property_type %>
-  <%= f.select :property_type, options_for_select([["SoMa", "soma"], ["FiDi", "fidi"], ["Civic Center", "civic center"], ["Mission", "mission"], ["Hayes Valley", "hayes valley"]]), {prompt: "Select type of type of space"}, {required: 'true'}%>
+  <%= f.select :property_type, options_for_select([["Loft", "loft"], ["FiDi", "fidi"], ["Civic Center", "civic center"], ["Mission", "mission"], ["Hayes Valley", "hayes valley"]]), {prompt: "Select type of type of space"}, {required: 'true'}%>
 
   <%= f.label :sq_ft %>
   <%= f.number_field :sq_ft, required: true %>
