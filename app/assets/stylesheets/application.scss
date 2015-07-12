@@ -3,6 +3,30 @@
 /*
  *= require foundation
  *= require foundation_and_overrides
+ *= require welcome.scss
  *= require_tree .
  *= require_self
  */
+body{
+	background-color: rgba(255,67,63,0.75);
+}
+img#james-logo{
+	width: 27rem;
+}
+#number-container{
+	text-align: center;
+	background-color: rgb(0,204,204);
+	border-radius: .5rem;
+	padding: .5rem 0 .5rem 0;
+	margin: 0 auto;
+	margin-top: 1rem;
+}
+#phone{
+	font-size: 2.4rem;
+}
+#text-cta{
+	color: white;
+}
+img.phone_icon{
+	height: 2.4rem;
+}
