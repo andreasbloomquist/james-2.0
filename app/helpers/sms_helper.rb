@@ -4,9 +4,25 @@ module SmsHelper
 
   @@client = Twilio::REST::Client.new ENV['TWILIO_ACCOUNT_SID'], ENV['TWILIO_AUTH_TOKEN']
 	
+  ###########
+  # Helper method to check if the number texting Twilio is a new number to the system
+  ###########
+
   def new_user?(number)
     return true if User.find_by_phone_number(number) == nil
   end
+  
+  ###########
+  # Helper method to check if the users text is in response to a property
+  ###########
+
+  def property_respose?(body)
+    return true unless Property.find_by_response_code(body) == nil
+  end
+
+  #################
+  # Helper method to add sms to log tabl
+  #################
 
   def create_log(params)
     SmsLog.create({
@@ -17,6 +33,11 @@ module SmsHelper
       })
   end
 
+  #############################################################################
+  # Method to check the last question the user answered,
+  # and respond with a follow question until all questions have been answered.
+  #############################################################################
+
   def send_message(number, response)
     #Find user and last open lead by that user
     @user = User.find_by_phone_number(number)
@@ -25,7 +46,9 @@ module SmsHelper
     ############
     # QUESTIONS
     ############
-    # Hard coding questions that Twilio will send depending on what question the user last entered
+    # Hard coding questions that Twilio will send depending on the last question answered
+    ######################################################################################
+
     @question_two = "Ok, and how many people do you need space for?"
     @question_three = "Do you want a creative/tech or more traditional feel?"
     @question_four = "And when do you need it by? Plz give me a date ex: '9/1/15'"
@@ -35,7 +58,10 @@ module SmsHelper
     #################
     # QUESTIONS HASH
     #################
-    # Questions hash has the truthy falsy values for each question, this is used to quickly check if a question is answered
+    # Questions hash has the truthy falsy values for each question.
+    # This is used to quickly check if a question is answered
+    ################################################################
+
     questions = {}
     questions[:case_one] = @user_lead.q_one === nil
     questions[:case_two] = @user_lead.q_two === nil
