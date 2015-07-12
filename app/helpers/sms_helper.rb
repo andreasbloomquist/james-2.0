@@ -20,6 +20,37 @@ module SmsHelper
     return true unless Property.find_by_response_code(body) == nil
   end
 
+  ###########
+  # Helper method to send response to user after responding to property
+  # and trigger sms to broker
+  ###########
+
+  def send_property_response(body)
+    property = Property.find_by_response_code(body)
+    broker_fn = property.broker.first_name
+    lead = property.lead
+    user = lead.user
+
+    user_response = "Great! I’ll let #{broker_fn}, the broker, know you’re interested. You should head back very shortly, stay tuned!"
+
+    broker_response = "Hey #{broker_fn}, you've got a new lead for the #{property.address} space! You can contact #{user.name} by calling or texting #{user.phone_number}"
+
+    # Respond to user
+    @@client.messages.create({
+        :from => '+14158010226', 
+        :to => user.phone_number, 
+        :body => user_response
+        })
+
+    # Respond to broker
+    @@client.messages.create({
+        :from => '+14158010226', 
+        :to => property.broker.phone_number, 
+        :body => broker_response
+        })
+    return render nothing: true
+  end
+
   #################
   # Helper method to add sms to log tabl
   #################

@@ -1,4 +1,5 @@
 class Property < ActiveRecord::Base
-	belongs_to :leads
-	belongs_to :brokers
+	belongs_to :lead
+	belongs_to :broker
+
 end

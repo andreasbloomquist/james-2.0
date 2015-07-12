@@ -8,15 +8,16 @@ class SmsController < ApplicationController
 
   def received
     sender = params[:From]
-    body = params[:Body]
+    @body = params[:Body]
     
     if new_user?(sender)
       create_user(params)
-    elsif property_respose? body
+    elsif property_respose? @body
+      p @body
       p "User responding to property!!!!!!"
-      return render nothing: true
+      send_property_response(@body)
     else
-      send_message sender, body
+      send_message sender, @body
     end
   end
 end
