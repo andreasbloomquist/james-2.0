@@ -16,6 +16,22 @@ class SessionsController < ApplicationController
     end
   end
 
+  def authenticate_broker
+    @broker = Broker.new
+  end
+
+  def check_broker
+    @number = "+1#{params[:broker][:phone_number]}"
+    @broker = Broker.confirm_broker(@number)
+    if @broker
+      set_broker_cookie(@broker.id)
+      redirect_to respond_to_lead_path(cookies[:lead])
+    else
+      flash[:success] = "Sorry, we weren't able to find that number"
+      redirect_to authenticate_broker_path
+    end
+  end
+
   def logout
   	@current_admin = session[:id] = nil
 		flash[:success] = "Successful login"

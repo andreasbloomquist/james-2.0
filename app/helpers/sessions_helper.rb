@@ -18,6 +18,20 @@ module SessionsHelper
     end
   end
 
+  def set_broker_cookie(broker)
+    cookies[:broker_id] = {
+      :value => broker,
+      :expires => 1.month.from_now,
+      }
+  end
+
+  def redirect_broker
+    cookies[:lead] = params[:response_url]
+    unless cookies[:broker_id]
+      return redirect_to authenticate_broker_path
+    end
+  end
+
   def redirect_unauthenticated
     unless logged_in?
       flash[:alert] = "Sorry, you must be logged in to see this content"
