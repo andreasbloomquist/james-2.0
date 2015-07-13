@@ -34,13 +34,16 @@ img#james-logo{
 #extra-cta{
 	background-color: rgb(0,204,204);
 	padding: 2rem;
+	.extra-cta{
+		text-align: center;
+	}
 }
 #james-faq{
 	padding: 2rem;
 	background-color: rgb(255,67,63);
 }
 #subtitle{
-	font-family: $secondary-font;
+	font-family: $primary-font;
 }
 #number-container{
 	text-align: center;
@@ -54,7 +57,7 @@ img#james-logo{
 	font-size: 2.4rem;
 }
 #text-cta{
-	font-family: $secondary-font;
+	font-family: $primary-font;
 	color: white;
 }
 img.phone_icon{
@@ -64,10 +67,38 @@ img.phone_icon{
 	background-color: rgba(255,222,0,1);
 	padding: 2rem;
 }
+#hiw{
+	border: 1px solid white;
+	border-radius: .5rem;
+	padding: .5rem;
+}
+.hiw{
+	text-align: center;
+	font-family: $primary-font;
+}
+span.num-emphasis {
+  font-weight: bolder;
+  font-size: 1.25rem;
+}
 .faq-q{
 	font-weight: bold;
+	font-family: $primary-font;
+	color: white;
+	font-size: 1.5rem;
 }
-
+.faq-a{
+	font-family: $secondary-font;
+	color: white;
+}
+.footer{
+	text-align: center;
+	background-color: rgb(0,204,204);
+}
+.container-head{
+	text-align: center;
+	font-family: $primary-font;
+	font-size: 4rem;
+}
 // Media queries
 @media (max-width: 420px) {
 	#title{
