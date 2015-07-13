@@ -1,4 +1,4 @@
-@import 'foundation';
+// @import 'foundation';
 @import 'foundation-datetimepicker';
 // Foundation by ZURB
 // foundation.zurb.com
@@ -649,11 +649,11 @@ $include-html-global-classes: $include-html-classes;
 // $input-font-family: inherit;
 // $input-font-color: rgba(0,0,0,0.75);
 // $input-font-size: rem-calc(14);
-// $input-bg-color: $white;
+$input-bg-color: rgba(0,0,0,0.2);
 // $input-focus-bg-color: scale-color($white, $lightness: -2%);
 // $input-border-color: scale-color($white, $lightness: -20%);
 // $input-focus-border-color: scale-color($white, $lightness: -40%);
-// $input-border-style: solid;
+$input-border-style: none;
 // $input-border-width: 1px;
 // $input-border-radius: $global-radius;
 // $input-disabled-bg: $gainsboro;

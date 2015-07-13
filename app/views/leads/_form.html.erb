@@ -1,32 +1,64 @@
-<%= form_for @property, url: '/properties/', method: 'post' do |f| %>
+<%= form_for @property, url: '/properties/', method: 'post', :html => {"data-abide" => ''} do |f| %>
+  <fieldset>
+    <legend>Property</legend>
+    <div class="row">
+      <div class="medium-6 columns">
+        <%= f.label "Property Address*" %>
+        <%= f.text_field :address, required: true, class: "prop-form" %>
+        <small class="error">Address is required</small>
+      </div>
+      <div class="medium-6 columns">
+        <%= f.label "Sub-Market*" %>
+        <%= f.select :sub_market, options_for_select([["SoMa", "soma"], ["FiDi", "fidi"], ["Civic Center", "civic center"], ["Mission", "mission"], ["Hayes Valley", "hayes valley"]]), {prompt: "Select sub market"}, {required: 'true', class: "prop-form"}%>
+          <small class="error">Sub market required</small>
+      </div>
+    </div>
+    <div class="row">
+      <div class="medium-6 columns">
+        <%= f.label "Property Type*" %>
+        <%= f.select :property_type, options_for_select([["Loft", "loft"], ["FiDi", "fidi"], ["Civic Center", "civic center"], ["Mission", "mission"], ["Hayes Valley", "hayes valley"]]), {prompt: "Select type of type of space"}, {required: 'true', class: "prop-form"}%>
+          <small class="error">Property type is required</small>
+      </div>
+      <div class="medium-6 columns">
+        <%= f.label "Square Feet - enter just the number*" %></span>
+        <%= f.number_field :sq_ft, required: true, class: "prop-form" %>
+        <small class="error">Sq. feet required, please enter as a number</small>
+      </div>
+    </div>
+    <div class="row">
+      <div class="medium-6 columns">
+        <%= f.label :rent_price %>
+        <%= f.number_field :rent_price, required: true, class: "prop-form" %>
+        <small class="error">Rent price required, please enter as a number, no $</small>
+      </div>
+      <div class="medium-6 columns">
+        <%= f.label "Available Date*" %>
+        <%= f.text_field :available, class: "date prop-form", data: { provide: 'datetimepicker' } %>
+          <small class="error">Please either select or enter a date</small>
+      </div>
+    </div>
+    <div class="row">
+      <div class="medium-6 columns">
+        <%= f.label :min %>
+        <%= f.number_field :min, class: "prop-form" %>
+      </div>
+      <div class="medium-6 columns">
+        <%= f.label :max %>
+        <%= f.number_field :max, class: "prop-form" %>
+      </div>
+    </div>
+    <div class="row">
+      <div class="small-12 small-centered columns">
+        <%= f.label :description %>
+        <%= f.text_area :description, class: "prop-form" %>
+      </div>
+    </div>
 
-  <%= f.label :address %>
-  <%= f.text_field :address, autofocus: true, required: true %>
-  
-  <%= f.label :sub_market %>
-  <%= f.select :sub_market, options_for_select([["SoMa", "soma"], ["FiDi", "fidi"], ["Civic Center", "civic center"], ["Mission", "mission"], ["Hayes Valley", "hayes valley"]]), {prompt: "Select sub market"}, {required: 'true'}%>
-
-  <%= f.label :property_type %>
-  <%= f.select :property_type, options_for_select([["Loft", "loft"], ["FiDi", "fidi"], ["Civic Center", "civic center"], ["Mission", "mission"], ["Hayes Valley", "hayes valley"]]), {prompt: "Select type of type of space"}, {required: 'true'}%>
-
-  <%= f.label :sq_ft %>
-  <%= f.number_field :sq_ft, required: true %>
-
-  <%= f.label :rent_price %>
-  <%= f.number_field :rent_price, required: true %>
-
-  <%= f.label :available %>
-  <%= f.text_field :available, class: "date", data: { provide: 'datetimepicker' } %>
-  <%= f.label :min %>
-  <%= f.number_field :min, required: true %>
-
-  <%= f.label :max %>
-  <%= f.number_field :max, required: true %>
-
-  <%= f.label :description %>
-  <%= f.text_area :description %>
-
-  <%= f.hidden_field :lead_id, :value => @lead.id %>
-
-  <%= f.submit "Submit to user" , class: "button"%>
+    <div class="row">
+      <div class="small-3 small-centered columns">
+        <%= f.submit "Submit to user" , class: "button"%>
+      </div>
+    </div>
+    <%= f.hidden_field :lead_id, :value => @lead.id %>
+  </fieldset>
 <% end %>
