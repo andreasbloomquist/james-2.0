@@ -8,5 +8,5 @@
 $(function(){ 
 
 	$(document).foundation(); 
-	$('.date').fdatetimepicker({})
+	// $('.date').fdatetimepicker({})
 });

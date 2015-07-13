@@ -31,6 +31,9 @@ select.prop-form{
 		background-color: $yellow;
 	}
 }
+::-webkit-input-placeholder {
+    color: white;
+}
 textarea.prop-form{
 	font-family: $primary-font;
 	border-bottom: 2px solid white;
