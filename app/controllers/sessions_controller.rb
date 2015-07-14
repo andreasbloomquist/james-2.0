@@ -22,7 +22,7 @@ class SessionsController < ApplicationController
 
   def check_broker
     @number = "+1#{params[:broker][:phone_number]}"
-    @broker = Broker.confirm_broker(@number)
+    @broker = Broker.is_broker?(@number)
     if @broker
       set_broker_cookie(@broker.id)
       redirect_to respond_to_lead_path(cookies[:lead])

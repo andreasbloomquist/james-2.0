@@ -13,8 +13,6 @@ class SmsController < ApplicationController
     if new_user?(sender)
       create_user(params)
     elsif property_respose? @body
-      p @body
-      p "User responding to property!!!!!!"
       send_property_response(@body)
     else
       send_message sender, @body

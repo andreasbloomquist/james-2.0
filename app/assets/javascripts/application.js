@@ -6,6 +6,7 @@
 
 $(function(){ 
   $(document).foundation(); 
+    $('input').onFocus=window.scrollTo(0, 0);
 });
 
 $(window).bind("load", function () {

@@ -5,8 +5,12 @@ class PropertiesController < ApplicationController
   def create
     @property = Property.new(property_params)
     broker_id = cookies[:broker_id]
+    prop_exists_err = "Sorry this property has already be reported by another broker for this lead."
     
-    if @property.save
+    if Property.exists?(property_params)
+      flash[:error] = prop_exists_err
+      redirect_to :back
+    elsif @property.save
       @phone_number = @property.lead.user.phone_number
       create_response_code @property
       @resposne_url = @property.lead.response_url
