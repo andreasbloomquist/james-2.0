@@ -3,12 +3,13 @@ class Property < ActiveRecord::Base
 	belongs_to :broker
   include PropertiesHelper
 
+  validates :address, :sub_market, :property_type, :sq_ft, :rent_price, :available, :lead_id, presence: true
 
   def self.exists?(params)
-    addy = params[:address].split[0..1]
+    addy = params[:address].split[0..1].join(" ")
     lead_id = params[:lead_id]
     sq_ft = params[:sq_ft]
-    return true if Property.where(["lead_id = ? and sq_ft = ? and address like ?", lead_id, sq_ft, "%#{addy}%"]) != nil
+    return true if Property.where(["lead_id = ? and sq_ft = ? and address like ?", lead_id, sq_ft, "%#{addy}%"]).last != nil
   end
 
 end

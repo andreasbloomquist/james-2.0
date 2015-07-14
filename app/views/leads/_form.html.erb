@@ -12,12 +12,12 @@
       </div>
     </div>
     <div class="row">
-      <div class="large-6 columns">
+      <div class="medium-6 columns">
         <%= f.label "Property Type*" %>
         <%= f.select :property_type, options_for_select([["Loft", "loft"], ["Creative", "creative"], ["Traditional", "traditional"]]), {prompt: "Select type of type of space"}, {required: 'true', class: "prop-form"}%>
       </div>
 
-      <div class="large-6 columns">
+      <div class="medium-6 columns">
         <%= f.label "Square Feet - enter just the number*" %>
         <%= f.number_field :sq_ft, required: true, class: "prop-form", placeholder: "Ex: 1200" %>
       </div>

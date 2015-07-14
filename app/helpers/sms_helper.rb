@@ -220,30 +220,30 @@ module SmsHelper
     property_details_msg = "#{property.sq_ft}sq ft #{property.property_type} in #{property.sub_market} for #{property.max} months at #{property.rent_price}/ft starting rent - available #{property.available.strftime("%m/%d/%y")}."
     broker_msg = "Here's what the broker said, '#{property.description}'. Reply with #{property.response_code} to connect with the broker."
 
-    @@client.messages.create({
-        :from => '+14158010226', 
-        :to => to, 
-        :body => property_found_msg
-        })
-    @@client.messages.create({
-        :from => '+14158010226', 
-        :to => to, 
-        :body => property_details_msg
-        })
-    if has_media? property
-      @@client.messages.create({
-        :from => '+14158010226', 
-        :to => to,
-        :body => broker_msg,
-        :media_url => property.image_url
-        })
-    else
-      @@client.messages.create({
-        :from => '+14158010226', 
-        :to => to,
-        :body => broker_msg
-        })
-    end
+    # @@client.messages.create({
+    #     :from => '+14158010226', 
+    #     :to => to, 
+    #     :body => property_found_msg
+    #     })
+    # @@client.messages.create({
+    #     :from => '+14158010226', 
+    #     :to => to, 
+    #     :body => property_details_msg
+    #     })
+    # if has_media? property
+    #   @@client.messages.create({
+    #     :from => '+14158010226', 
+    #     :to => to,
+    #     :body => broker_msg,
+    #     :media_url => property.image_url
+    #     })
+    # else
+    #   @@client.messages.create({
+    #     :from => '+14158010226', 
+    #     :to => to,
+    #     :body => broker_msg
+    #     })
+    # end
   end
 
   def has_media?(property)
