@@ -151,11 +151,12 @@ span.num-emphasis {
 }
 footer{
 	text-align: center;
-	background-color: rgb(0,204,204);
+	background-color: $green;
   bottom: 0;
   left: 0;
   width: 100%;
 	i.social{
+		padding-top: 2rem;
 		font-size: 2rem;
 		color: white;
 		&:hover{
