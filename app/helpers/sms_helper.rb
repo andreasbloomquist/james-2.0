@@ -230,11 +230,24 @@ module SmsHelper
         :to => to, 
         :body => property_details_msg
         })
-    @@client.messages.create({
+    if has_media? property
+      @@client.messages.create({
         :from => '+14158010226', 
         :to => to,
         :body => broker_msg,
         :media_url => property.image_url
         })
+    else
+      @@client.messages.create({
+        :from => '+14158010226', 
+        :to => to,
+        :body => broker_msg
+        })
+    end
+  end
+
+  def has_media?(property)
+    return false if property.image_url === ""
+    return true if property.image_url != ""
   end
 end
