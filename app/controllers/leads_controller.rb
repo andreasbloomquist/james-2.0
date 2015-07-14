@@ -6,4 +6,8 @@ class LeadsController < ApplicationController
     @broker = cookies[:broker_id]
     @property = Property.new
   end
+
+  def thank_you
+    
+  end
 end
