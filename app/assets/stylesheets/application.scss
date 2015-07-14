@@ -13,6 +13,7 @@ $red: #ff433f;
 $yellow: #ffde00;
 $green: #00be7e;
 $blue: #00cccc;
+
 p.legal {
   font-size: 0.75rem;
   padding-top: 0.5rem;
@@ -25,11 +26,14 @@ p.legal {
 body{
 	background-color: rgba(255,67,63,0.75);
 	legend{
-		background-color: rgba(255,67,63,0);
+		background: none;
 		font-family: $primary-font;
 		color: white;
 	}
 }
+// =================
+// TODO Rename this class to something more generic!
+// =================
 .broker-check{
 	text-align: center;
 	font-family: $primary-font;
@@ -145,10 +149,12 @@ span.num-emphasis {
 	font-family: $secondary-font;
 	color: white;
 }
-.footer{
+footer{
 	text-align: center;
 	background-color: rgb(0,204,204);
-	padding-top: 1rem;
+  bottom: 0;
+  left: 0;
+  width: 100%;
 	i.social{
 		font-size: 2rem;
 		color: white;

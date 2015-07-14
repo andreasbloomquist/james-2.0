@@ -6,4 +6,9 @@ class LeadsController < ApplicationController
     @broker = cookies[:broker_id]
     @property = Property.new
   end
+
+  def thank_you
+    @response_url = params[:resonse_url]
+    render :thank_you
+  end
 end
