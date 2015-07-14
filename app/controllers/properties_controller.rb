@@ -9,10 +9,11 @@ class PropertiesController < ApplicationController
     if @property.save
       @phone_number = @property.lead.user.phone_number
       create_response_code @property
+      @resposne_url = @property.lead.response_url
 
       send_property(@phone_number, @property)
       flash[:success] = 'Property successfully added and has been sent to the lead'
-      redirect_to root_path
+      redirect_to thank_you_path(@resposne_url)
     else
       flash[:error] = '#{@property.errors.each {|e| e }}'
     end

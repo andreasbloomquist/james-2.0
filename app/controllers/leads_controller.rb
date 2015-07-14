@@ -8,6 +8,7 @@ class LeadsController < ApplicationController
   end
 
   def thank_you
-    
+    @response_url = params[:resonse_url]
+    render :thank_you
   end
 end
