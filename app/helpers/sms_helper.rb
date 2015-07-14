@@ -233,7 +233,8 @@ module SmsHelper
     @@client.messages.create({
         :from => '+14158010226', 
         :to => to,
-        :body => broker_msg
+        :body => broker_msg,
+        :media_url => property.image_url
         })
   end
 end

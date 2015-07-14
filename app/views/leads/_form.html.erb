@@ -54,13 +54,21 @@
         <%= f.text_area :description, class: "prop-form", placeholder: "Enter a basic description for the user" %>
       </div>
     </div>
-
     <div class="row">
-      <div class="small-3 small-centered columns">
-        <%= f.submit "Submit to Tenant" , class: "button"%>
+      <div class="medium-12 columns">
+        <%= f.label "Add an image" %>
+        <%= f.uploadcare_single_uploader_field :image_url %>
+        <p class="legal">*Photos, flyers, & floor plans only, and must be your own.</p>
       </div>
-    </div>
+    </div><br>
+    
     <%= f.hidden_field :lead_id, :value => @lead.id %>
     <%= f.hidden_field :broker_id, :value => @broker %>
+    
+    <div class="row">
+      <div class="small-3 small-centered columns">
+        <%= f.submit "Submit" , class: "button"%>
+      </div>
+    </div>
   </fieldset>
 <% end %>

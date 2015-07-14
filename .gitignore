@@ -13,3 +13,5 @@
 /tmp
 .env
 .DS_Store
+uploadcare.yml
+config/uploadcare.yml

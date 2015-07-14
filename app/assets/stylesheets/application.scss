@@ -1,5 +1,5 @@
-@import url(http://fonts.googleapis.com/css?family=Muli);
-@import url(http://fonts.googleapis.com/css?family=Playfair+Display);
+@import url(https://fonts.googleapis.com/css?family=Muli);
+@import url(https://fonts.googleapis.com/css?family=Playfair+Display);
 @import "foundation_and_overrides";
 @import 'foundation-icons';
 /*
@@ -13,7 +13,15 @@ $red: #ff433f;
 $yellow: #ffde00;
 $green: #00be7e;
 $blue: #00cccc;
-
+p.legal {
+  font-size: 0.75rem;
+  padding-top: 0.5rem;
+}
+.uploadcare-widget-button.uploadcare-widget-button-open {
+  border-radius: 0;
+  font-family: $primary-font;
+  background-color: #008CBA;
+}
 body{
 	background-color: rgba(255,67,63,0.75);
 	legend{

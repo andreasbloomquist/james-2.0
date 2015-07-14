@@ -8,7 +8,10 @@
     <%= stylesheet_link_tag    "application" %>
     <%= javascript_include_tag "vendor/modernizr" %>
     <%= javascript_include_tag "application", 'data-turbolinks-track' => true %>
-    <%= csrf_meta_tags %>    
+    <%= csrf_meta_tags %>
+    <%= include_uploadcare_widget_from_cdn version: "1.5.5", min: true %>
+    <%= uploadcare_settings %>
+
   </head>
   <body>
     <%= render 'layouts/header' %>
