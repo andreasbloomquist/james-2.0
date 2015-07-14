@@ -35,7 +35,7 @@ module SmsHelper
     lead = property.lead
     user = lead.user
 
-    user_response = "Great! I’ll let #{broker_fn}, the broker, know you’re interested. You should head back very shortly, stay tuned!"
+    user_response = "Great! I’ll let #{broker_fn}, the broker, know you’re interested. You should hear back very shortly, stay tuned!"
 
     broker_response = "Hey #{broker_fn}, you've got a new lead for the #{property.address} space! You can contact #{user.name} by calling or texting #{user.phone_number}"
 
@@ -217,7 +217,7 @@ module SmsHelper
     user = User.find_by_phone_number(to)
     
     property_found_msg = "Hey #{user.name}! James, here. Good news, I’ve found properties for you that work. A broker validated these and just sent them in. Here they are:"
-    property_details_msg = "#{property.sq_ft}sq ft #{property.property_type} in #{property.sub_market} for #{property.max} months at #{property.rent_price}/ft starting rent - vailable #{property.available.strftime("%m/%d/%y")}."
+    property_details_msg = "#{property.sq_ft}sq ft #{property.property_type} in #{property.sub_market} for #{property.max} months at #{property.rent_price}/ft starting rent - available #{property.available.strftime("%m/%d/%y")}."
     broker_msg = "Here's what the broker said, '#{property.description}'. Reply with #{property.response_code} to connect with the broker."
 
     @@client.messages.create({

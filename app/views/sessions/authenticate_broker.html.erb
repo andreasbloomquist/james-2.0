@@ -8,6 +8,7 @@
         <%= form_for @broker, url: '/authenticate', method: 'post' do |f| %>
           <%= f.label "Phone Numer*" %>
           <%= f.telephone_field :phone_number, required: true, class: "prop-form", required: true, pattern: "[0-9]{1,10}" %>
+          <%= f.button "Submit", class: "button" %>
         <% end %>
       </div> 
     </div>
