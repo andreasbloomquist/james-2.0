@@ -5,6 +5,14 @@
 
 //
 
+$primary-font: 'Muli', sans-serif;
+$secondary-font: 'Playfair Display', serif;
+
+$red: #ff433f;
+$yellow: #ffde00;
+$green: #00be7e;
+$blue: #00cccc;
+
 // Table of Contents
 // Foundation Settings
 //
@@ -651,7 +659,7 @@ $input-font-color: rgba(0,0,0,0.75);
 $input-bg-color: rgba(255,255,255,0);
 $input-focus-bg-color: scale-color(rgba(253,222,0,1), $lightness: -2%);
 // $input-border-color: scale-color($white, $lightness: -20%);
-// $input-focus-border-color: scale-color($white, $lightness: -40%);
+$input-focus-border-color: none;
 $input-border-style: none;
 // $input-border-width: 1px;
 // $input-border-radius: $global-radius;
