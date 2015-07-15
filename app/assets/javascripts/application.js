@@ -2,11 +2,11 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require foundation
-//= require angular/angular 
+//= require angular/angular
+//= require stellar.min.js
 
 $(function(){ 
   $(document).foundation(); 
-    $('input').onFocus=window.scrollTo(0, 0);
 });
 
 $(window).bind("load", function () {

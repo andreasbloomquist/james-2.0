@@ -13,7 +13,9 @@ $red: #ff433f;
 $yellow: #ffde00;
 $green: #00be7e;
 $blue: #00cccc;
-
+div#about-james {
+  padding: 2rem;
+}
 p.legal {
   font-size: 0.75rem;
   padding-top: 0.5rem;
@@ -91,10 +93,12 @@ img#james-logo{
 	padding: 2rem;
 }
 #extra-cta{
-	background-color: rgb(0,204,204);
-	padding: 2rem;
+	background-color: $blue;
+	padding: 5rem;
 	.extra-cta{
 		text-align: center;
+		font-size: 3rem;
+		color: $yellow;
 	}
 }
 #james-faq{
@@ -118,6 +122,7 @@ img#james-logo{
 #text-cta{
 	font-family: $primary-font;
 	color: white;
+	font-size: 1.7rem;
 }
 img.phone_icon{
 	height: 2.4rem;
