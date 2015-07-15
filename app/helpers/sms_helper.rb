@@ -33,6 +33,7 @@ module SmsHelper
       });
   end
 
+  
   ###########
   # Helper method to send response to user after responding to property
   # and trigger sms to broker
@@ -45,9 +46,18 @@ module SmsHelper
     user_number = lead.user.phone_number
     broker_number = property.broker.phone_number
 
-    user_response = "Great! I’ll let #{broker_fn}, the broker, know you’re interested. You should hear back very shortly, stay tuned!"
+    user_response = "Great! I’ll let #{broker_fn}, the broker, know you’re interested. I'll work on getting some time's he's available. Here's #{broker_fn}'s number just to reach him directly, #{broker_number}"
 
-    broker_msg = "Hey #{broker_fn}, you've got a new lead for the #{property.address} space! You can contact #{lead.user.name} by calling or texting #{lead.user.phone_number}"
+    # Create appointment record to collect brokers available times
+    appointment = property.appointments.create({
+      broker_id: property.broker_id,
+      availability_url: SecureRandom.uuid,
+      user_response: SecureRandom.uuid
+      })
+
+    bitly_link = Bitly.client.shorten("https://7b3ddecf.ngrok.com/appointments/#{appointment.availability_url}")
+    broker_msg = "Hey #{broker_fn}, you've got a new lead for the #{property.address} space! You can contact #{lead.user.name} by calling or texting #{lead.user.phone_number}, or #{bitly_link.short_url} to set up apt"
+
 
     # Respond to user
     create_sms_msg(user_number, user_response)

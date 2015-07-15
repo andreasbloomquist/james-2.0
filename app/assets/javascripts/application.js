@@ -3,11 +3,12 @@
 //= require turbolinks
 //= require foundation
 //= require angular/angular
+//= require foundation-datetimepicker
+
 
 $(function(){ 
-  
   $(document).foundation();
-  
+  $('.datetimepicker').fdatetimepicker()
 });
 
 $(window).bind("load", function () {
