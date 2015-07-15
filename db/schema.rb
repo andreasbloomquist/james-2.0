@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150714013433) do
+ActiveRecord::Schema.define(version: 20150715162558) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -47,6 +47,7 @@ ActiveRecord::Schema.define(version: 20150714013433) do
     t.string   "response_url"
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
+    t.string   "q_six"
   end
 
   add_index "leads", ["user_id"], name: "index_leads_on_user_id", using: :btree

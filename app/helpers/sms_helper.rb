@@ -90,7 +90,8 @@ module SmsHelper
     @question_two = "Ok, and how many people do you need space for?"
     @question_three = "Do you want a creative/tech or more traditional feel?"
     @question_four = "And when do you need it by? Plz give me a date ex: '9/1/15'"
-    @question_five = "Great! Finally, respond with any notes or special requests and my brokers will get right on this!"
+    @question_five = "Sounds good. How long do you think you'll need the space for? Year or less, 1-3 years, or more than 3 years?"
+    @question_six = "Great! Finally, respond with any notes or special requests and my brokers will get right on this!"
     @sending_to_broker = "I have a team of brokers on this right now, so hang tight! I’ll reach out very soon with more info, no need to reply to this text"
 
     #################
@@ -106,6 +107,7 @@ module SmsHelper
     questions[:case_three] = @user_lead.q_three === nil
     questions[:case_four] = @user_lead.q_four === nil
     questions[:case_five] = @user_lead.q_five === nil
+    questions[:case_six] = @user_lead.q_six === nil
 
     ###########################
     # SELECT A MESSAGE TO SEND
@@ -140,11 +142,16 @@ module SmsHelper
       create_sms_msg(number, @question_five)
       return render nothing: true
     
+    elsif questions[:case_five]
+      @user_lead.update_column(:q_five, response)
+      create_sms_msg(number, @question_six)
+      return render nothing: true
+      
     # If the last question has been anserwed answered AND is not marked complete
     # Then update lead to be complete, log last sms, and create url for broker
-    elsif questions[:case_five]
+    elsif questions[:case_six]
       @user_lead.update_columns({
-        :q_five => response, 
+        :q_six => response, 
         :complete => true,
         :response_url => SecureRandom.uuid
         })
