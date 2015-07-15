@@ -116,8 +116,6 @@ module SmsHelper
     # Checks to see if a response has been recorded for the first quetsion
     # If a response hasn't been recorded, then the last response sent is assigned to question 1
     # After recording the response, the second question is sent out
-
-    # TODO: create a method for sending the message so that these conditions can get a lot smaller
     if questions[:case_one]
       @user_lead.update_column(:q_one, response)
       create_sms_msg(number, @question_two)

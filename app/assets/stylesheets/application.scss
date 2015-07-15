@@ -15,6 +15,9 @@ $green: #00be7e;
 $blue: #00cccc;
 div#about-james {
   padding: 2rem;
+  p {
+    font-family: $secondary-font;
+  }
 }
 p.legal {
   font-size: 0.75rem;
@@ -146,12 +149,12 @@ span.num-emphasis {
 }
 .faq-q{
   font-weight: bold;
-  font-family: $primary-font;
+  font-family: $secondary-font;
   color: white;
   font-size: 1.5rem;
 }
 .faq-a{
-  font-family: $secondary-font;
+  font-family: $primary-font;
   color: white;
 }
 footer{
@@ -160,8 +163,13 @@ footer{
   bottom: 0;
   left: 0;
   width: 100%;
-  i.social{
+  ul.foot {
     padding-top: 2rem;
+  }
+  li {
+    padding-bottom: 0;
+  }
+  i.social{
     font-size: 2rem;
     color: white;
     &:hover{
