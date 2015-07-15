@@ -646,7 +646,7 @@ $include-html-global-classes: $include-html-classes;
 // $form-spacing: rem-calc(16);
 
 // We use these to style the labels in different ways
-// $form-label-pointer: pointer;
+ $form-label-pointer: cursor;
 // $form-label-font-size: rem-calc(14);
 // $form-label-font-weight: $font-weight-normal;
 // $form-label-line-height: 1.5;
@@ -690,7 +690,7 @@ $input-box-shadow: none;
 // $input-prefix-font-color-alt: $white;
 
 // We use this setting to turn on/off HTML5 number spinners (the up/down arrows)
-// $input-number-spinners: true;
+ $input-number-spinners: false;
 
 // We use these to style the error states for inputs and labels
 // $input-error-message-padding: rem-calc(6 9 9);

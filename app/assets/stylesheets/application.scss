@@ -14,6 +14,15 @@ $yellow: #ffde00;
 $green: #00be7e;
 $blue: #00cccc;
 
+.button.cust-btn{
+  background-color: rgba(0,0,0,0);
+  border: 2px solid black;
+  &:hover{
+    background-color: $green;
+    color: black;
+    border-color: white;
+  }
+}
 div#about-james {
   padding: 2rem;
   background-color: $blue;
@@ -35,9 +44,13 @@ p.legal {
 .uploadcare-widget-button.uploadcare-widget-button-open {
   border-radius: 0;
   font-family: $primary-font;
-  background-color: #008CBA;
+  background-color: rgba(0,0,0,0);
+  border: 2px solid black;
   &:hover{
     cursor: pointer;
+    background-color: $green;
+    color: black;
+    border-color: white;
   }
 }
 .row.thanks {

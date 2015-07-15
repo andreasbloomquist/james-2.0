@@ -5,7 +5,9 @@
 //= require angular/angular
 
 $(function(){ 
-  $(document).foundation(); 
+  
+  $(document).foundation();
+  
 });
 
 $(window).bind("load", function () {
@@ -19,4 +21,5 @@ $(window).bind("load", function () {
             'margin-top': height + 'px'
         });
     }
+    $(".uploadcare-widget-button.uploadcare-widget-button-open").addClass("button cust-btn");
 });
