@@ -13,8 +13,14 @@ $red: #ff433f;
 $yellow: #ffde00;
 $green: #00be7e;
 $blue: #00cccc;
+
 div#about-james {
   padding: 2rem;
+  background-color: $blue;
+  color: $yellow;
+  h4{
+    color: $yellow;
+  }
   p {
     font-family: $secondary-font;
   }
@@ -27,8 +33,17 @@ p.legal {
   border-radius: 0;
   font-family: $primary-font;
   background-color: #008CBA;
+  &:hover{
+    cursor: pointer;
+  }
 }
-  body{
+.row.thanks {
+  padding-top: 5rem;
+}
+a.button {
+  display: block;
+}
+body{
   background-color: rgba(255,67,63,0.75);
   legend{
     background: none;
