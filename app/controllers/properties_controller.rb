@@ -16,7 +16,6 @@ class PropertiesController < ApplicationController
       @resposne_url = @property.lead.response_url
 
       send_property(@phone_number, @property)
-      flash[:success] = 'Property successfully added and has been sent to the lead'
       redirect_to thank_you_path(@resposne_url)
     else
       flash[:error] = '#{@property.errors.each {|e| e }}'

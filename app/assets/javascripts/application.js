@@ -3,7 +3,6 @@
 //= require turbolinks
 //= require foundation
 //= require angular/angular
-//= require stellar.min.js
 
 $(function(){ 
   $(document).foundation(); 

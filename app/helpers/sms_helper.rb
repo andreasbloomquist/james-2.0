@@ -21,7 +21,8 @@ module SmsHelper
   ###########
 
   def property_respose?(body)
-    return true unless Property.find_by_response_code(body) == nil
+    sanitized_body = body.downcase
+    return true unless Property.find_by_response_code(sanitized_body) == nil
   end
 
   def create_sms_msg(to, body)
@@ -118,42 +119,39 @@ module SmsHelper
     # TODO: create a method for sending the message so that these conditions can get a lot smaller
     if questions[:case_one]
       @user_lead.update_column(:q_one, response)
-      @user_num = @user.phone_number
-      create_sms_msg(@user_num, @question_two)
+      create_sms_msg(number, @question_two)
     return render nothing: true
 
     # Checks to see if the second question has been recorded
     # If it hasn't then the response is recorded as Question 2 and question 3 is sent 
     elsif questions[:case_two]
       @user_lead.update_column(:q_two, response)
-      create_sms_msg(@user_num, @question_three)
+      create_sms_msg(number, @question_three)
       return render nothing: true
 
     # Same logic as above
     elsif questions[:case_three]
       @user_lead.update_column(:q_three, response)
-      create_sms_msg(@user_num, @question_four)
+      create_sms_msg(number, @question_four)
       return render nothing: true
 
     # Same logic as above
     elsif questions[:case_four]
       @user_lead.update_column(:q_four, response)
-      create_sms_msg(@user_num, @question_five)
+      create_sms_msg(number, @question_five)
       return render nothing: true
     
     # If the last question has been anserwed answered AND is not marked complete
     # Then update lead to be complete, log last sms, and create url for broker
-    elsif questions[:complete] ===
+    else
       @user_lead.update_columns({
         :q_five => response, 
         :complete => true,
         :response_url => SecureRandom.uuid
         })
-      create_sms_msg(@user_num, @sending_to_broker)
+      create_sms_msg(number, @sending_to_broker)
 
-      trigger_lead(@user_lead)
-
-      return render nothing: true
+      trigger_lead(@user_lead)      
     end
   end
 
