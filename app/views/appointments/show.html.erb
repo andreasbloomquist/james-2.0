@@ -1,0 +1,25 @@
+<div class="row">
+  <div class="medium-10 medium-centered small-10 small-centered column">
+    <h1 class="lead-header">Appointment scheduler!</h1>
+    <p class="lead-header">Select up to 3 times you're available to meet with the prospective tenant.</p>
+  </div>
+</div>
+<div class="row">
+  <div class="medium-6 medium-centered small-10 small-centered columns">
+    <%= form_for @appointment, method: 'patch' do |f| %>
+      <div class="date">
+        <%= f.label :option_one %>
+        <%= f.text_field :option_one, class: "prop-form datetimepicker", placeholder: "Select a date" %><br>
+      </div>
+      <div class="date">
+        <%= f.label :option_two %>
+        <%= f.text_field :option_two, class: "prop-form datetimepicker", placeholder: "Select a date" %><br>
+      </div>
+      <div class="date">
+        <%= f.label :option_three %>
+        <%= f.text_field :option_three, class: "prop-form datetimepicker", placeholder: "Select a date" %><br>
+      </div>
+        <%= f.submit "Submit Times", class: "button cust-btn" %>
+    <% end %>
+  </div>
+</div>

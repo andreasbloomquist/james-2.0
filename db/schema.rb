@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150715162558) do
+ActiveRecord::Schema.define(version: 20150715184223) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -25,6 +25,34 @@ ActiveRecord::Schema.define(version: 20150715162558) do
   end
 
   add_index "admins", ["broker_id"], name: "index_admins_on_broker_id", using: :btree
+
+  create_table "appointment", force: :cascade do |t|
+    t.datetime "option_one"
+    t.datetime "option_two"
+    t.datetime "option_three"
+    t.string   "user_response"
+    t.string   "calendar_url"
+    t.string   "broker_availability_url"
+    t.integer  "broker_id"
+    t.integer  "lead_id"
+    t.integer  "property_id"
+  end
+
+  add_index "appointment", ["broker_id"], name: "index_appointment_on_broker_id", using: :btree
+  add_index "appointment", ["lead_id"], name: "index_appointment_on_lead_id", using: :btree
+
+  create_table "appointments", force: :cascade do |t|
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
+    t.datetime "option_one"
+    t.datetime "option_two"
+    t.datetime "option_three"
+    t.string   "user_response"
+    t.string   "calendar_url"
+    t.string   "availability_url"
+    t.integer  "broker_id"
+    t.integer  "property_id"
+  end
 
   create_table "brokers", force: :cascade do |t|
     t.string   "first_name"
@@ -91,6 +119,8 @@ ActiveRecord::Schema.define(version: 20150715162558) do
   end
 
   add_foreign_key "admins", "brokers"
+  add_foreign_key "appointment", "brokers"
+  add_foreign_key "appointment", "leads"
   add_foreign_key "leads", "users"
   add_foreign_key "properties", "leads"
 end
