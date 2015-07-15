@@ -105,6 +105,7 @@ module SmsHelper
     questions[:case_two] = @user_lead.q_two === nil
     questions[:case_three] = @user_lead.q_three === nil
     questions[:case_four] = @user_lead.q_four === nil
+    questions[:case_five] = @user_lead.q_five === nil
 
     ###########################
     # SELECT A MESSAGE TO SEND
@@ -143,7 +144,7 @@ module SmsHelper
     
     # If the last question has been anserwed answered AND is not marked complete
     # Then update lead to be complete, log last sms, and create url for broker
-    else
+    elsif questions[:case_five]
       @user_lead.update_columns({
         :q_five => response, 
         :complete => true,
@@ -151,7 +152,12 @@ module SmsHelper
         })
       create_sms_msg(number, @sending_to_broker)
 
-      trigger_lead(@user_lead)      
+      trigger_lead(@user_lead)   
+      return render nothing: true
+    else
+      response_msg = "Hmm, I didn't quite get that, but it looks like you have an open request and our brokers are on it!"
+      create_sms_msg(number, response_msg)
+      render nothing: true
     end
   end
 
