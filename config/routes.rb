@@ -14,6 +14,7 @@ Rails.application.routes.draw do
   post '/authenticate', to: 'sessions#check_broker'
 
   get '/appointments/:availability_url/', to: 'appointments#show', as: 'schedule_appointment'
+  get '/appointments/:availability_url/thank-you', to: 'appointments#thank_you', as: 'appointment_submitted'
   patch '/appointments/:availability_url', to: 'appointments#update', as: 'appointment'
 
   post '/properties/', to: 'properties#create', as: 'new_property'

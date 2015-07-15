@@ -46,7 +46,7 @@ module SmsHelper
     user_number = lead.user.phone_number
     broker_number = property.broker.phone_number
 
-    user_response = "Great! I’ll let #{broker_fn}, the broker, know you’re interested. I'll work on getting some time's he's available. Here's #{broker_fn}'s number just to reach him directly, #{broker_number}"
+    user_response = "Great! I’ll let #{broker_fn}, the broker, know you’re interested. I'll work on getting some times he's available. Here's #{broker_fn}'s number just to reach them directly, #{broker_number}"
 
     # Create appointment record to collect brokers available times
     appointment = property.appointments.create({
@@ -208,7 +208,7 @@ module SmsHelper
     user = User.find_by_phone_number(to)
     
     property_found_msg = "Hey #{user.name}! James, here. Good news, I’ve found properties for you that work. A broker validated these and just sent them in. Here they are:"
-    property_details_msg = "#{property.sq_ft}sq ft #{property.property_type} in #{property.sub_market} for #{property.max} months at #{property.rent_price}/ft starting rent - available #{property.available.strftime("%m/%d/%y")}."
+    property_details_msg = "#{property.address} - #{property.sq_ft}sq ft #{property.property_type} in #{property.sub_market} for #{property.max} months at #{property.rent_price}/ft starting rent - available #{property.available.strftime("%m/%d/%y")}."
     broker_msg = "Here's what the broker said, '#{property.description}'. Reply with #{property.response_code} to connect with the broker."
 
     # When a new property is submitted the following series of texts are sent

@@ -20,6 +20,7 @@ $blue: #00cccc;
 .button.cust-btn{
   background-color: rgba(0,0,0,0);
   border: 2px solid black;
+  font-family: $primary-font;
   &:hover{
     background-color: $green;
     color: black;

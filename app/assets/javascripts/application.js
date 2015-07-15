@@ -2,7 +2,6 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require foundation
-//= require angular/angular
 //= require foundation-datetimepicker
 
 

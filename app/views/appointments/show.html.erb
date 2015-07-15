@@ -1,7 +1,9 @@
 <div class="row">
   <div class="medium-10 medium-centered small-10 small-centered column">
-    <h1 class="lead-header">Appointment scheduler!</h1>
-    <p class="lead-header">Select up to 3 times you're available to meet with the prospective tenant.</p>
+    <h1 class="lead-header">Pick A Time!</h1>
+    <p class="lead-header">Suggest up to 3 times to meet with <%= @appointment.property.lead.user.name %> at <%= @appointment.property.address %> to show the <%= @appointment.property.sq_ft %> sq ft space. James will take care of the rest!</p>
+
+
   </div>
 </div>
 <div class="row">
@@ -9,17 +11,27 @@
     <%= form_for @appointment, method: 'patch' do |f| %>
       <div class="date">
         <%= f.label :option_one %>
-        <%= f.text_field :option_one, class: "prop-form datetimepicker", placeholder: "Select a date" %><br>
+        <%= f.text_field :option_one, class: "prop-form datetimepicker", placeholder: "Select a date", required: true %><br>
       </div>
       <div class="date">
         <%= f.label :option_two %>
-        <%= f.text_field :option_two, class: "prop-form datetimepicker", placeholder: "Select a date" %><br>
+        <%= f.text_field :option_two, class: "prop-form datetimepicker", placeholder: "Select a date", required: true  %><br>
       </div>
       <div class="date">
         <%= f.label :option_three %>
-        <%= f.text_field :option_three, class: "prop-form datetimepicker", placeholder: "Select a date" %><br>
+        <%= f.text_field :option_three, class: "prop-form datetimepicker", placeholder: "Select a date", required: true  %><br>
       </div>
-        <%= f.submit "Submit Times", class: "button cust-btn" %>
+      <div class="date">
+        <%= f.label "Any special notes or contacts?" %>
+        <%= f.text_field :notes, class: "prop-form" %>
+      </div>
+      <div class="date">
+        <div class="row">
+          <div class="small-12 small-centered columns">
+            <%= f.submit "Submit Times", class: "button cust-btn" %>
+          </div>
+        </div>
+      </div>
     <% end %>
   </div>
 </div>
