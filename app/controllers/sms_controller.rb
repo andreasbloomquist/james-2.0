@@ -15,7 +15,7 @@ class SmsController < ApplicationController
     elsif property_respose? @body
       send_property_response(@body)
     else
-      send_message sender, @body
+      send_user_questions sender, @body
     end
   end
 end
