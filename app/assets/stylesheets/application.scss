@@ -13,11 +13,25 @@ $red: #ff433f;
 $yellow: #ffde00;
 $green: #00be7e;
 $blue: #00cccc;
+$light-red: rgba(255,67,63,0.75);
 
+#home-page{
+  background-color: white;
+}
+#top-container{
+  background-color: $light-red;
+}
 div#atedrop1 {
   display: block;
   text-align: center;
   border-radius: 0;
+  &:hover{
+    color: $red;
+  }
+  .addthisevent_dropdown {
+    font-family: $primary-font;
+
+  }
 }
 
 .date {
@@ -28,8 +42,8 @@ div#atedrop1 {
   border: 2px solid black;
   font-family: $primary-font;
   &:hover{
-    background-color: $green;
-    color: black;
+    background-color: $yellow;
+    color: $red; 
     border-color: white;
   }
 }
@@ -56,10 +70,11 @@ p.legal {
   font-family: $primary-font;
   background-color: rgba(0,0,0,0);
   border: 2px solid black;
+  margin-bottom: 0;
   &:hover{
     cursor: pointer;
-    background-color: $green;
-    color: black;
+    background-color: $yellow;
+    color: $red;
     border-color: white;
   }
 }
@@ -70,7 +85,7 @@ a.button {
   display: block;
 }
 body{
-  background-color: rgba(255,67,63,0.75);
+  background-color: $green;
   legend{
     background: none;
     font-family: $primary-font;
@@ -133,7 +148,6 @@ img#james-logo{
 }
 #hiw-container{
   background-color:	#00be7e;
-  margin-top: 2rem;
   padding: 2rem;
 }
 #extra-cta{
@@ -200,22 +214,28 @@ span.num-emphasis {
 }
 footer{
   text-align: center;
-  background-color: $green;
+  background-color: $blue;
   bottom: 0;
   left: 0;
   width: 100%;
   ul.foot {
-    padding-top: 2rem;
+    padding-top: 1rem;
   }
   li {
     padding-bottom: 0;
+    margin-bottom: -1rem;
   }
   i.social{
     font-size: 2rem;
     color: white;
     &:hover{
-      color: rgba(255,222,0,1);
+      color: $yellow;
     }
+  }
+  p.footer-txt {
+    color: white;
+    font-size: 0.75rem;
+    margin-bottom: 0.1rem;
   }
 }
 .container-head{
@@ -225,7 +245,7 @@ footer{
 }
 .number-con{
   margin-top: 2rem;
-  margin-bottom: 2rem;
+  padding-bottom: 2rem;
 }
 // Media queries
 @media (max-width: 420px) {
