@@ -7,7 +7,7 @@
         <p class="broker-check"><strong>Note:</strong> This is a one time validation on this device. You will not need to enter your number again for subsequent leads using this device.</p>
         <%= form_for @broker, url: '/authenticate', method: 'post' do |f| %>
           <%= f.label "Phone Numer*" %>
-          <%= f.telephone_field :phone_number, required: true, class: "prop-form", required: true, pattern: "[0-9]{1,10}" %>
+          <%= f.telephone_field :phone_number, required: true, class: "prop-form", required: true %>
           <div class="row">
             <div class="small-4 medium-4 small-centered large-centered columns">
               <%= f.button "Submit", class: "button cust-btn" %>
