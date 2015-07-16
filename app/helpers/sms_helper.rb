@@ -55,7 +55,7 @@ module SmsHelper
       calendar_url: SecureRandom.uuid
       })
 
-    bitly_link = Bitly.client.shorten("https://7b3ddecf.ngrok.com/appointments/#{appointment.availability_url}")
+    bitly_link = Bitly.client.shorten("https://shrouded-ocean-9475.herokuapp.com/appointments/#{appointment.availability_url}")
     broker_msg = "Hey #{broker_fn}, you've got a new lead for the #{property.address} space! You can contact #{lead.user.name} by calling or texting #{lead.user.phone_number}, or #{bitly_link.short_url} to set up apt"
 
 
