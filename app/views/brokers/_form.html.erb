@@ -1,21 +1,21 @@
 <%= form_for @broker, url: '/brokers', method: 'post' do |f| %>
   <%= f.label :first_name %>
-  <%= f.text_field :first_name %><br>
+  <%= f.text_field :first_name, class: "prop-form" %><br>
 
   <%= f.label :last_name %>
-  <%= f.text_field :last_name %><br>
+  <%= f.text_field :last_name, class: "prop-form" %><br>
 
   <%= f.label :email %>
-  <%= f.text_field :email %><br>
+  <%= f.text_field :email, class: "prop-form" %><br>
 
   <%= f.label :phone_number %>
-  <%= f.text_field :phone_number %><br>
+  <%= f.text_field :phone_number, class: "prop-form" %><br>
 
   <%= f.label :company %>
-  <%= f.text_field :company %><br>
+  <%= f.text_field :company, class: "prop-form" %><br>
 
 
   <div class="actions">
-    <%= f.submit class: "button" %>
+    <%= f.submit class: "button cust-btn" %>
   </div>
 <% end %>

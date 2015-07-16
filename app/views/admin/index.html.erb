@@ -1,1 +1,28 @@
-<h1>Admin site</h1>
+<div class="admin-bg">
+  <div class="row">
+    <div class="large-12 large-centered columns">
+      <h1>Admin site</h1>
+      <div class="medium-3 columns panel dash">
+        <h3>Total users</h3>
+        <p><%= total_users %></p>
+      </div>
+      <div class="medium-3 columns panel dash">
+        <h3>Total leads</h3>
+        <p><%= total_leads %></p>
+      </div>
+      <div class="medium-3 columns panel dash">
+        <h3>Total Properties</h3>
+        <p><%= total_responses %></p>
+      </div>
+      <div class="medium-3 columns panel end dash">
+        <h3>Response rate</h3>
+        <p><%= number_to_percentage(response_rate, precision: 0) %></p>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="medium-6 medium-centered columns">
+      <%= link_to("Add New Broker", new_broker_path, class: "button") %>
+    </div>
+  </div>
+</div>

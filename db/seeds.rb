@@ -1,5 +1,9 @@
 # Seeding brokers
 
+user = User.find_by_phone_number("+16178754788")
+
+user.destroy
+
 Broker.create({
   first_name: "Alex",
   last_name: "Lassar",

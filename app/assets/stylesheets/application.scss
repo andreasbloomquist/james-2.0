@@ -5,6 +5,7 @@
 /*
  *= require foundation_and_overrides
  *= require welcome
+ *= require admin
  */
 $primary-font: 'Muli', sans-serif;
 $secondary-font: 'Playfair Display', serif;
@@ -15,6 +16,9 @@ $green: #00be7e;
 $blue: #00cccc;
 $light-red: rgba(255,67,63,0.75);
 
+.admin-bg{
+  background-image: url('congruent_outline.png');
+}
 #home-page{
   background-color: white;
 }
@@ -30,7 +34,6 @@ div#atedrop1 {
   }
   .addthisevent_dropdown {
     font-family: $primary-font;
-
   }
 }
 
@@ -86,6 +89,7 @@ a.button {
 }
 body{
   background-color: $green;
+  font-family: $primary-font;
   legend{
     background: none;
     font-family: $primary-font;
@@ -247,6 +251,23 @@ footer{
   margin-top: 2rem;
   padding-bottom: 2rem;
 }
+
+.medium-3.columns.panel.dash {
+  height: 14rem;
+  border-radius: 69rem;
+  width: 14rem;
+  margin-right: 1rem;
+  h3 {
+  padding: 30px 0 0 3px;
+  text-align: center;
+  font-size: 1.5rem;
+  }
+  p {
+  font-size: 3rem;
+  text-align: center;
+  }
+}
+
 // Media queries
 @media (max-width: 420px) {
   #title{
