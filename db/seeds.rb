@@ -6,7 +6,7 @@ Broker.create({
   email: "alex.lassar@gmail.com", 
   phone_number: "+13129275281", 
   company: "JLL"
-  )}
+  })
 Broker.create({
   first_name: "Andreas",
   last_name: "Bloomquist",
