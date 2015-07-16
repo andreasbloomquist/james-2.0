@@ -13,7 +13,7 @@ Broker.create({
   email: "andreasbloomquist.com", 
   phone_number: "+16178754788", 
   company: "GA"
-  )}
+  })
 
 # Admin.create({
 #   email: "andreasbloomquist@gmail.com",
