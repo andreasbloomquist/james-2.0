@@ -49,7 +49,7 @@ module SmsHelper
     user_response = "Great! I’ll let #{broker_fn}, the broker, know you’re interested. I'll work on getting some times he's available. Here's #{broker_fn}'s number just to reach them directly, #{broker_number}"
 
     # Create appointment record to collect brokers available times
-    appointment = property.appointments.create({
+    appointment = property.appointment.create({
       broker_id: property.broker_id,
       availability_url: SecureRandom.uuid,
       calendar_url: SecureRandom.uuid
