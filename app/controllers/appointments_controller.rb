@@ -20,6 +20,11 @@ class AppointmentsController < ApplicationController
   def thank_you
   end
 
+  def add_to_cal
+    @appointment = Appointment.find_by_calendar_url(params[:calendar_url])
+    @appointment_time = appointment_time(@appointment)
+  end
+
   private
   def appt_params
     params.require(:appointment).permit(:option_one, :option_two, :option_three, :notes)
