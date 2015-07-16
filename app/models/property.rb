@@ -1,7 +1,7 @@
 class Property < ActiveRecord::Base
 	belongs_to :lead
 	belongs_to :broker
-  has_many :appointments
+  has_one :appointment
   
   include PropertiesHelper
 

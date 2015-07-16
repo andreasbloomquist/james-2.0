@@ -1,6 +1,8 @@
 class SmsController < ApplicationController
 	include Webhookable
   include SmsHelper
+  include AppointmentsHelper
+  include LeadsHelper
   
   after_filter :set_header
  
@@ -12,8 +14,14 @@ class SmsController < ApplicationController
     
     if new_user?(sender)
       create_user(params)
+
     elsif property_respose? @body
       send_property_response(@body)
+
+    elsif responding_to_appointment?(sender, @body) && lead_complete?(sender)
+      p "I'm responding to a time to see a property!!!!!!!!!!!"
+      create_sms_msg(sender, "Got it bro, you're replying to a property. This feature is still in development tho...")
+      render nothing: true
     else
       send_user_questions sender, @body
     end

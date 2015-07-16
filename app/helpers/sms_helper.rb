@@ -52,7 +52,7 @@ module SmsHelper
     appointment = property.appointments.create({
       broker_id: property.broker_id,
       availability_url: SecureRandom.uuid,
-      user_response: SecureRandom.uuid
+      calendar_url: SecureRandom.uuid
       })
 
     bitly_link = Bitly.client.shorten("https://7b3ddecf.ngrok.com/appointments/#{appointment.availability_url}")
