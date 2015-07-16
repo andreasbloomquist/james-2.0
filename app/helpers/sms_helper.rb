@@ -57,7 +57,7 @@ module SmsHelper
       })
 
     bitly_link = Bitly.client.shorten("https://shrouded-ocean-9475.herokuapp.com/appointments/#{appointment.availability_url}")
-    broker_msg = "Hey #{broker_fn}, you've got a new interest for the #{property.address} space! Follow the link #{bitly_link.short_url} to set up apt!"
+    broker_msg = "Hey #{broker_fn}, #{lead.user.name} is interested in the #{property.address} #{property.sq_ft} sq ft space! I’ve given them your number to reach out but in the meantime, why not get started on suggesting some tour times: #{bitly_link.short_url}"
 
 
     # Respond to user
