@@ -258,4 +258,26 @@ module SmsHelper
     return false if property.image_url === ""
     return true if property.image_url != ""
   end
+
+  #############
+  # EASTER EGG
+  #############
+
+  def is_easter?(body)
+    sanitized = body.downcase
+    return true if sanitized === "sf-wdi-18"
+    return false
+  end
+
+  def send_easter_egg(number)
+    easter_msg = "Congrats on completing GA WDI! You Ruby Rockstar you! Now let's drink some beer!"
+    @@client.messages.create({
+      :from => '+14158010226', 
+      :to => number,
+      :body => easter_msg,
+      :media_url => "http://media.giphy.com/media/10FNGnuUcdEeUE/giphy.gif"
+      })
+    render nothing: true
+  end
+
 end

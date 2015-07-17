@@ -166,6 +166,9 @@ img#james-logo{
     font-family: $secondary-font;
     a{
       color: $yellow;
+      &:hover{
+        cursor: pointer;
+      }
     }
 	}
 }
@@ -188,6 +191,13 @@ img#james-logo{
   margin: 0 auto;
   a{
     color: black;
+    &:hover{
+      cursor: pointer;
+    }
+  }
+  p{
+    padding: 0;
+    margin: 0;
   }
 }
 #phone{
