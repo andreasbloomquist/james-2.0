@@ -1,4 +1,6 @@
 class LeadsController < ApplicationController
+  http_basic_authenticate_with name: "text", password: "james"
+
   before_filter :redirect_broker
 
   def show

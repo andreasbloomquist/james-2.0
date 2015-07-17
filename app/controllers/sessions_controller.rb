@@ -1,4 +1,5 @@
 class SessionsController < ApplicationController
+   http_basic_authenticate_with name: "text", password: "james"
 
   def new
     @admin = Admin.new
