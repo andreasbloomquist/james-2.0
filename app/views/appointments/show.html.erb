@@ -1,6 +1,6 @@
 <div class="row">
   <div class="medium-10 medium-centered small-10 small-centered column">
-    <h1 class="lead-header">Pick A Time!</h1>
+    <h1 class="lead-header top">Pick A Time!</h1>
     <p class="lead-header">Suggest up to 3 times to meet with <%= @appointment.property.lead.user.name %> at <%= @appointment.property.address %> to show the <%= @appointment.property.sq_ft %> sq ft space. James will take care of the rest!</p>
 
 
@@ -21,9 +21,9 @@
         <%= f.label :option_three %>
         <%= f.text_field :option_three, class: "prop-form datetimepicker", placeholder: "Select a date", required: true  %><br>
       </div>
-      <div class="date">
+      <div>
         <%= f.label "Any special notes or contacts?" %>
-        <%= f.text_field :notes, class: "prop-form" %>
+        <%= f.text_field :notes, class: "prop-form" %><br>
       </div>
       <div class="date">
         <div class="row">

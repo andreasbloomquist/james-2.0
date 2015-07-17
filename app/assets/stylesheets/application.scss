@@ -65,6 +65,8 @@ div#about-james {
 }
 input.button {
   padding: 1rem 7rem 1.0625rem 7rem;
+  display: block;
+  margin: 0 auto;
 }
 p.legal {
   font-size: 0.75rem;
@@ -104,6 +106,9 @@ body{
 .broker-check{
   text-align: center;
   font-family: $primary-font;
+}
+.top {
+  margin-top: 3rem;
 }
 select.prop-form{
   background-color: rgba(255,255,255,0);
@@ -233,6 +238,9 @@ span.num-emphasis {
   font-weight: bolder;
   font-size: 1.25rem;
 }
+span#atedrop1-drop {
+  width: 13.75rem;
+}
 .faq-q{
   font-weight: bold;
   font-family: $primary-font;
@@ -249,6 +257,7 @@ footer{
   bottom: 0;
   left: 0;
   width: 100%;
+  padding-top: .75rem;
   a{
   margin: 1rem;
   }
