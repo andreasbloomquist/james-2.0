@@ -21,6 +21,7 @@ class PropertiesController < ApplicationController
       redirect_to thank_you_path(@resposne_url)
     else
       flash[:error] = '#{@property.errors.each {|e| e }}'
+      redirect_to respond_to_lead_path(@property.lead.response_url)
     end
   end
 
