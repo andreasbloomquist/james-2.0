@@ -176,6 +176,28 @@ module SmsHelper
       render nothing: true
     end
   end
+  ##########################
+  # Start lead process fresh if user texts "fresh start"
+  ##########################
+
+  def start_fresh_lead(number)
+    user = User.find_by_phone_number(number)
+    user.leads.create({})
+
+    fresh_msg = "Got it, everyone deserves a fresh start from time to time!"
+    question_one = "First, where are you looking- give me one or more neighborhoods: SOMA, FiDi, the Mission, Jackson Square"
+
+    create_sms_msg(user.phone_number, fresh_msg)
+    create_sms_msg(user.phone_number, question_one)
+    render nothing: true
+  end
+
+  def fresh_start?(body)
+    sanitized = body.downcase
+    return true if sanitized === "fresh start"
+    return false
+  end
+
 
 	#####################
 	# create_user method
@@ -209,7 +231,7 @@ module SmsHelper
     user = User.find_by_phone_number(to)
     
     property_found_msg = "Hey #{user.name}! James, here. Good news, I’ve found properties for you that work. A broker validated these and just sent them in. Here they are:"
-    property_details_msg = "#{property.address} - #{property.sq_ft}sq ft #{property.property_type} in #{property.sub_market} for #{property.max} months at #{property.rent_price}/ft starting rent - available #{property.available.strftime("%m/%d/%y")}."
+    property_details_msg = "#{property.address} - #{property.sq_ft}sq ft #{property.property_type} in #{property.sub_market} for #{property.max} months at $#{property.rent_price}/ft starting rent - available #{property.available.strftime("%m/%d/%y")}."
     broker_msg = "Here's what the broker said, '#{property.description}'. Reply with #{property.response_code} to connect with the broker."
 
     # When a new property is submitted the following series of texts are sent

@@ -18,6 +18,9 @@ class SmsController < ApplicationController
     elsif property_respose? @body
       send_property_response(@body)
 
+    elsif fresh_start?(@body)
+      start_fresh_lead(sender)
+
     elsif responding_to_appointment?(sender, @body) && lead_complete?(sender)
       appt_confirmation(sender, @body)
       render nothing: true
