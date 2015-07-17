@@ -56,7 +56,7 @@ module SmsHelper
       calendar_url: SecureRandom.uuid
       })
 
-    bitly_link = Bitly.client.shorten("https://textjames.co/appointments/#{appointment.availability_url}")
+    bitly_link = Bitly.client.shorten("https://www.textjames.co/appointments/#{appointment.availability_url}")
     broker_msg = "Hey #{broker_fn}, #{lead.user.name} is interested in the #{property.address} #{property.sq_ft} sq ft space! I’ve given them your number to reach out but in the meantime, why not get started on suggesting some tour times: #{bitly_link.short_url}"
 
 

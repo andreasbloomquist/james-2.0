@@ -44,7 +44,7 @@ module AppointmentsHelper
     appt = property.appointment
     response = property.appointment.update_column(:user_response, appt_option)
     time = appointment_time(appt)
-    bitly_cal = Bitly.client.shorten("https://textjames.co/appointments/#{appt.calendar_url}/add").short_url
+    bitly_cal = Bitly.client.shorten("https://www.textjames.co/appointments/#{appt.calendar_url}/add").short_url
     
     tenant_msg = "Great! You're confirmed for #{time.strftime('%m/%d/%y %l:%M%P')} to meet #{property.broker.first_name} at #{property.address}. Click here to add the tour to your calendar #{bitly_cal}"
     broker_msg = "Hi #{property.broker.first_name}, James here. #{user.name} confirmed the #{time.strftime('%m/%d/%y %l:%M%P')} time for the #{property.address}, #{property.sq_ft}sq ft space. Click here to add the tour to your calendar #{bitly_cal}"

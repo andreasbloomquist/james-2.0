@@ -11,7 +11,7 @@ module BrokersHelper
 
   def trigger_lead(lead)
     @brokers = Broker.all
-    bitly = Bitly.client.shorten("https://textjames.co/leads/#{lead.response_url}")
+    bitly = Bitly.client.shorten("https://www.textjames.co/leads/#{lead.response_url}")
     message = "New lead - #{lead.q_one}, #{lead.q_two} ppl, #{lead.q_three}, #{lead.q_four}, Term length: #{lead.q_five}. Notes: #{lead.q_six}, Click here to respond #{bitly.short_url}"
     @brokers.each { |broker| send_lead(broker.phone_number, message) }
   end
