@@ -26,7 +26,7 @@ class SmsController < ApplicationController
 
     elsif responding_to_appointment?(sender, @body) && lead_complete?(sender)
       appt_confirmation(sender, @body)
-      render nothing: true
+      
     else
       send_user_questions sender, @body
     end

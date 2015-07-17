@@ -54,7 +54,7 @@ module AppointmentsHelper
 
     # Send confirmation to broker
     create_sms_msg(property.broker.phone_number, broker_msg)
-
+    render nothing: true
   end
 
 
