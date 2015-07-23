@@ -301,6 +301,15 @@ footer{
 }
 
 // Media queries
+@media (max-width: 640px) {
+  img.iphone {
+    height: 70vh;
+    display: block;
+    margin: auto;
+    width: auto;
+  }
+}
+
 @media (max-width: 420px) {
   #title{
     font-size: 3.25rem;
