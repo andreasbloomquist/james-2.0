@@ -25,9 +25,19 @@ class PropertiesController < ApplicationController
     end
   end
 
+  def previous
+    @properties = params[:params_id]
+
+    @properties.each do |id|
+      prop = Property.find(id)
+    redirect_to root_path
+  end
+
   private
 
   def property_params
     params.require(:property).permit(:address, :sub_market, :property_type, :sq_ft, :available, :min, :max, :description, :rent_price, :lead_id, :broker_id, :image_url)
   end
+
+  def 
 end
