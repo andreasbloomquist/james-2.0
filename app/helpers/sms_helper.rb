@@ -243,12 +243,16 @@ module SmsHelper
 
     # Check to see if the response includes a picture
     if has_media? property
-      @@client.messages.create({
-        :from => '+14158010226', 
-        :to => to,
-        :body => broker_msg,
-        :media_url => property.image_url
-        })
+      image_arr = []
+      property.image_url.files.each {|x| image_arr.push(x.cdn_url)}
+      create_sms_msg(to, broker_msg)
+
+      @@client.messages.create(
+        from: '+14158010226', 
+        to: to,
+        body: "A few images from the broker",
+        media_url: image_arr
+        )
     else
       create_sms_msg(to, broker_msg)
     end

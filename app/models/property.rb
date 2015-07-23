@@ -2,7 +2,8 @@ class Property < ActiveRecord::Base
 	belongs_to :lead
 	belongs_to :broker
   has_one :appointment
-  
+  has_uploadcare_group :image_url
+
   include PropertiesHelper
 
   validates :address, :sub_market, :property_type, :sq_ft, :rent_price, :available, :lead_id, presence: true

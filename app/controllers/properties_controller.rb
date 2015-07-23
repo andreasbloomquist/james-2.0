@@ -13,6 +13,7 @@ class PropertiesController < ApplicationController
       flash[:error] = prop_exists_err
       redirect_to :back
     elsif @property.save
+      @property.image_url.load
       @phone_number = @property.lead.user.phone_number
       create_response_code @property
       @resposne_url = @property.lead.response_url
