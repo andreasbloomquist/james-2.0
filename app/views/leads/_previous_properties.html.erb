@@ -1,0 +1,32 @@
+<div class="row">
+  <div class="medium-12 medium-centered columns">
+
+  <% @broker_test.properties.each do |prop| %>
+    <div class="medium-4 mediun-centered panel end columns">
+      <div class="medium-5 columns">
+        <%= image_tag(prop.image_url) %>
+      </div>
+      <div class="medium-7 medium-centered columns">
+        <p><%= prop.address %> | <%= prop.sq_ft %> sq ft</p>
+        <p><em><%= prop.description %></em></p>
+        <%= radio_button_tag(:id, prop.id, false, :class => 'radio',
+                    :'data-address' => prop.address, 
+                    :'data-subMarket' => prop.sub_market, 
+                    :'data-propertyType' => prop.property_type, 
+                    :'data-sq_ft' => prop.sq_ft, 
+                    :'data-price' => prop.rent_price, 
+                    :'data-available' => prop.available, 
+                    :'data-min' => prop.min,
+                    :'data-max' => prop.max,
+                    :'data-description' => prop.description,
+                    :'data-image' => prop.image_url) %>
+
+      </div>
+      </div>  
+    <% end %>
+  </div>
+</div>
+
+
+    
+  

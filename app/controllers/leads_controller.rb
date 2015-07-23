@@ -6,6 +6,7 @@ class LeadsController < ApplicationController
   def show
     @lead = Lead.find_by_response_url(params[:response_url])
     @broker = cookies[:broker_id]
+    @broker_test = Broker.find(@broker)
     @property = Property.new
   end
 
