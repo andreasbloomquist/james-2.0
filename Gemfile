@@ -36,6 +36,7 @@ gem 'foundation-icons-sass-rails'
 gem 'uploadcare-rails', "~> 1.0"
 
 gem 'foundation-datetimepicker-rails'
+gem 'client_side_validations', github: "DavyJonesLocker/client_side_validations", branch: "4-2-stable"
 # Use Unicorn as the app server
 # gem 'unicorn'
 
