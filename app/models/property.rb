@@ -1,4 +1,7 @@
 class Property < ActiveRecord::Base
+  validates :address, presence: true
+  validates :address, :sub_market, :property_type, :sq_ft, :rent_price, :available, :lead_id, presence: true
+
 	belongs_to :lead
 	belongs_to :broker
   has_one :appointment

@@ -3,7 +3,7 @@
 //= require turbolinks
 //= require foundation
 //= require foundation-datetimepicker
-
+//= require rails.validations
 
 $(function(){ 
   $(document).foundation();
