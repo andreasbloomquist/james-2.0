@@ -21,12 +21,40 @@ $light-red: rgba(255,67,63,0.75);
 .message{
   color: $red;
   background-color: rgba(255, 255, 255, 0.6);
-  margin-top: -2vh;
+  margin-top: -2.5vh;
   font-size: 1rem;
   font-weight: bold;
   padding: 0.25rem;
   margin-bottom: 0.5rem;
   font-family: $primary-font;
+}
+span.prefix.price {
+    background-color: transparent;
+    border: none;
+    text-align: right;
+    padding-right: 0;
+}
+span.postfix.sqft {
+    background-color: transparent;
+    border: none;
+    text-align: left;
+    padding: 0;
+}
+.medium-1.columns.sqft {
+    padding-left: 0;
+    margin-top: 4vh;
+}
+.medium-5.columns.sqft {
+    padding-right: 0;
+}
+.medium-1.columns.price {
+    margin-top: 3.25vh;
+    padding-right: 0;
+    background-color: transparent;
+    width: 1.5rem;
+}
+.medium-5.columns.price{
+  padding-left: 0;
 }
 .admin-bg{
   background-image: url('congruent_outline.png');
