@@ -1,7 +1,5 @@
 class LeadsController < ApplicationController
-  # http_basic_authenticate_with name: "text", password: "james"
-
-  before_filter :redirect_broker
+  before_action :redirect_broker
 
   def show
     @lead = Lead.find_by_response_url(params[:response_url])

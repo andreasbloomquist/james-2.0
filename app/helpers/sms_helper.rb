@@ -259,8 +259,8 @@ module SmsHelper
   end
 
   def has_media?(property)
-    return false if property.image_url === ""
-    return true if property.image_url != ""
+    return false if property.image_url === nil
+    return true if property.image_url != nil
   end
 
   #############

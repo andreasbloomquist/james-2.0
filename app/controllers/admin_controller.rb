@@ -1,12 +1,11 @@
 class AdminController < ApplicationController
-  # http_basic_authenticate_with name: "text", password: "james"
-
-	before_filter :redirect_unauthenticated
+  before_action :redirect_unauthenticated
   def index
-	end
+  end
 
-	private
-		def set_admin
-			@admin = Admin.find(session[:id])
+  private
+
+    def set_admin
+      @admin = Admin.find(session[:id])
     end
 end
