@@ -11,15 +11,15 @@
     <%= form_for @appointment, method: 'patch' do |f| %>
       <div class="date">
         <%= f.label :option_one %>
-        <%= f.text_field :option_one, class: "prop-form datetimepicker", placeholder: "Select a date", required: true %><br>
+        <%= f.text_field :option_one, class: "prop-form datetimepicker", placeholder: "Select a date", required: true, readonly: true %><br>
       </div>
       <div class="date">
         <%= f.label :option_two %>
-        <%= f.text_field :option_two, class: "prop-form datetimepicker", placeholder: "Select a date", required: true  %><br>
+        <%= f.text_field :option_two, class: "prop-form datetimepicker", placeholder: "Select a date", required: true, readonly: true  %><br>
       </div>
       <div class="date">
         <%= f.label :option_three %>
-        <%= f.text_field :option_three, class: "prop-form datetimepicker", placeholder: "Select a date", required: true  %><br>
+        <%= f.text_field :option_three, class: "prop-form datetimepicker", placeholder: "Select a date", required: true, readonly: true  %><br>
       </div>
       <div>
         <%= f.label "Any special notes or contacts?" %>
