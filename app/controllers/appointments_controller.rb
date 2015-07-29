@@ -1,10 +1,9 @@
 class AppointmentsController < ApplicationController
-  # http_basic_authenticate_with name: "text", password: "james"
-
   include AppointmentsHelper
   
   def show
-    @appointment = Appointment.find_by_availability_url(params[:availability_url])
+    @appointment = Appointment.find_by_availability_url(
+                                params[:availability_url])
   end
 
   def update
@@ -14,7 +13,7 @@ class AppointmentsController < ApplicationController
       send_available_times(@appointment)
       redirect_to appointment_submitted_path(@appointment.availability_url)
     else
-      flash[:error] = 'Update failed. Try again.' 
+      flash[:error] = 'Update failed. Try again.'
       redirect_to schedule_appointment(@appointment.availability_url)
     end
   end
@@ -28,7 +27,12 @@ class AppointmentsController < ApplicationController
   end
 
   private
+
   def appt_params
-    params.require(:appointment).permit(:option_one, :option_two, :option_three, :notes)
+    params.require(:appointment).permit(
+                                  :option_one, 
+                                  :option_two, 
+                                  :option_three, 
+                                  :notes)
   end
 end

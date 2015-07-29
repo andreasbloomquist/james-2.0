@@ -1,6 +1,4 @@
 class SessionsController < ApplicationController
-   # http_basic_authenticate_with name: "text", password: "james"
-
   def new
     @admin = Admin.new
   end
@@ -9,10 +7,10 @@ class SessionsController < ApplicationController
     @admin = Admin.confirm(params.require(:admin).permit(:email, :password))
     if @admin
       login(@admin)
-      flash[:success] = "Successful login"
+      flash[:success] = 'Successful login'
       redirect_to admin_path
     else
-      flash[:error] = "Invalid email address or password.  Please try again."
+      flash[:error] = 'Invalid email address or password. Please try again.'
       redirect_to login_path
     end
   end
@@ -34,8 +32,8 @@ class SessionsController < ApplicationController
   end
 
   def logout
-  	@current_admin = session[:id] = nil
-		flash[:success] = "Successful login"
-		redirect_to root_path
+    @current_admin = session[:id] = nil
+    flash[:success] = 'Successful login'
+    redirect_to root_path
   end
 end
