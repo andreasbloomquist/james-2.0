@@ -269,17 +269,16 @@ module SmsHelper
 
   def is_easter?(body)
     sanitized = body.downcase
-    return true if sanitized === "sf-wdi-18"
+    return true if sanitized === "hired"
     return false
   end
 
   def send_easter_egg(number)
-    easter_msg = "Congrats on completing GA WDI! You Ruby Rockstar you! Now let's drink some beer!"
+    easter_msg = "Thanks for taking the time to say hello, it was great to meet you! Here's a link to my site www.andreasbloomquist.com"
     @@client.messages.create({
       :from => '+14158010226', 
       :to => number,
       :body => easter_msg,
-      :media_url => "http://media.giphy.com/media/10FNGnuUcdEeUE/giphy.gif"
       })
     render nothing: true
   end

@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
+  root 'construction#index'
+
   resources :brokers
-  root 'welcome#index'
+  get '/home', to: 'welcome#index'
   post 'sms/received', to: 'sms#received', as: 'received'
   get 'leads/:response_url', to: 'leads#show', as: 'respond_to_lead'
 
