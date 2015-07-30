@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  root 'construction#index'
+  root 'welcome#index'
 
   resources :brokers
   get '/home', to: 'welcome#index'
