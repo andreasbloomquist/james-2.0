@@ -28,12 +28,8 @@ class PropertiesController < ApplicationController
 
     properties = params[:property_ids]
     
-    properties.each do |id|
-      prop = Property.find(id.to_i)
-      prop.leads << @lead
-      send_property(@lead.user.phone_number, prop)
-    end
-
+    send_previous_properties(@lead.user.phone_number, properties, @lead)
+    
     redirect_to thank_you_path(@lead.response_url)
   end
 

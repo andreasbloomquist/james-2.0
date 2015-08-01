@@ -229,6 +229,11 @@ module SmsHelper
     render nothing: true
 	end
 
+  ######################
+  # send_property method
+  ######################
+  # This helper is invokved to send a property to a user when the property is brand new
+
   def send_property(to, property)
     user = User.find_by_phone_number(to)
     
@@ -249,14 +254,58 @@ module SmsHelper
       property.image_url.files.each {|x| image_arr.push(x.cdn_url)}
       create_sms_msg(to, broker_msg)
 
-      # @@client.messages.create(
-      #   from: '+14158010226', 
-      #   to: to,
-      #   body: "A few images from the broker",
-      #   media_url: image_arr
-      #   )
+      @@client.messages.create(
+        from: '+14158010226', 
+        to: to,
+        body: "A few images from the broker",
+        media_url: image_arr
+        )
     else
       create_sms_msg(to, broker_msg)
+    end
+  end
+
+
+  ######################
+  # send_previous_props helper
+  ######################
+  # This helper is invoked when a broker submits properties that were previously entered
+  # I separated these helpers so that when multiple previous properties are sent only one intro text is sent
+
+  def send_previous_properties(to, properties, lead)
+    user = User.find_by_phone_number(to)
+
+    property_found_msg = "Hey #{user.name}! James, here. Good news, I’ve found properties for you that work. A broker validated these and just sent them in. Here they are:"
+
+    # Send property found message
+    create_sms_msg(to, property_found_msg)
+
+    # Iterate through array of properties and send appropriate texts for each property
+    properties.each do |id|
+      prop = Property.find(id.to_i)
+      prop.leads << lead
+      property_details_msg = "#{prop.address} - #{prop.sq_ft}sq ft #{prop.property_type} in #{prop.sub_market} for #{prop.max} months at $#{prop.rent_price}/ft starting rent - available #{prop.available.strftime("%m/%d/%y")}."
+      broker_msg = "Here's what the broker said, '#{prop.description}'. Reply with #{prop.response_code} to connect with the broker."
+
+      
+      # Send details of property
+      create_sms_msg(to, property_details_msg)
+
+      # Check to see if the response includes a picture
+      if has_media? prop
+        image_arr = []
+        prop.image_url.files.each {|x| image_arr.push(x.cdn_url)}
+        create_sms_msg(to, broker_msg)
+
+        @@client.messages.create(
+          from: '+14158010226', 
+          to: to,
+          body: "A few images from the broker for the #{prop.address} space",
+          media_url: image_arr
+          )
+      else
+        create_sms_msg(to, broker_msg)
+      end
     end
   end
 

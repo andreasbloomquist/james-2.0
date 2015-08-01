@@ -1,24 +1,34 @@
-<div>Your previous properties</div>
-<%= form_tag previous_properties_path, method: 'post' do %>
-  <% @broker.properties.each do |prop| %>
-    <div class='panel'>
-      <div class='row'>
-        <div class="small-2 columns">
-          <%= check_box_tag 'property_ids[]', prop.id %>
+<%= form_tag previous_properties_path, method: 'post', class: "custom" do %>
+  <fieldset>
+    <legend>Previous Properties</legend>
+    <% @broker.properties.each do |prop| %>
+      <label for=<%= prop.id %>>
+        <div class='panel cust-panel'>
+          <div class='row'>
+            <div class="small-1 columns">
+              <%= check_box_tag 'property_ids[]', prop.id, nil, :id => prop.id %>
+            </div>
+            <span class="custom checkbox"></span>
+            <div class="small-3 columns">
+              <% if prop.image_url? %>
+                <%= image_tag(image(prop)) %>
+              <% end %>
+            </div>
+            <div class="small-2 columns">
+              Address: <%= prop.address %><br>
+              Sq Ft: <%= prop.sq_ft %>
+            </div>
+            <div class="small-6 columns">
+              Description: <%= prop.description %>
+            </div>
+          </div>
         </div>
-        <div class="small-2 columns">
-          <%= prop.image_url %>
-        </div>
-        <div class="small-8 columns">
-          Address: <%= prop.address %><br>
-          Sq Ft: <%= prop.sq_ft %>
-        </div>
-      </div>
-    </div>
-  <% end %>
+      </label>
+    <% end %>
 
-  <%= hidden_field_tag :lead_id, @lead.id %>
+    <%= hidden_field_tag :lead_id, @lead.id %>
 
-  <%= submit_tag 'Submit', class: "button cust-btn" %>
+    <%= submit_tag 'Submit', class: "button cust-btn" %>
+  </fieldset>
 <% end %>
   
