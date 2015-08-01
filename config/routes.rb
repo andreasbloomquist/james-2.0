@@ -20,6 +20,7 @@ Rails.application.routes.draw do
   patch '/appointments/:availability_url', to: 'appointments#update', as: 'appointment'
 
   post '/properties/', to: 'properties#create', as: 'new_property'
+  post '/properties/previous', to: 'properties#previous', as: 'previous_properties'
 
   get '/appointments/:calendar_url/add', to: 'appointments#add_to_cal', as: 'calendar'
 end

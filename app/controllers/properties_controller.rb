@@ -4,6 +4,8 @@ class PropertiesController < ApplicationController
 
   def create
     @property = Property.new(property_params)
+    @lead = Lead.find(property_params[:lead_id])
+
     prop_exists_err = 
       'Sorry this property has already be reported by another broker for this lead.'    
     if Property.exists?(property_params)
@@ -11,13 +13,28 @@ class PropertiesController < ApplicationController
       redirect_to :back
     elsif @property.save
       @property.image_url.load if @property.image_url != nil
-      @phone_number = @property.lead.user.phone_number
+      @property.leads << @lead
+      @phone_number = @lead.user.phone_number
       create_response_code @property
       send_property(@phone_number, @property)
-      redirect_to thank_you_path(@property.lead.response_url)
+      redirect_to thank_you_path(@lead.response_url)
     else
-      redirect_to respond_to_lead_path(@property.lead.response_url)
+      redirect_to respond_to_lead_path(@lead.response_url)
     end
+  end
+
+  def previous
+    @lead = Lead.find(params[:lead_id])
+
+    properties = params[:property_ids]
+    
+    properties.each do |id|
+      prop = Property.find(id.to_i)
+      prop.leads << @lead
+      send_property(@lead.user.phone_number, prop)
+    end
+
+    redirect_to thank_you_path(@lead.response_url)
   end
 
   private
@@ -32,8 +49,8 @@ class PropertiesController < ApplicationController
                                       :max, 
                                       :description, 
                                       :rent_price, 
-                                      :lead_id, 
-                                      :broker_id, 
+                                      :broker_id,
+                                      :lead_id,
                                       :image_url)
   end
 end

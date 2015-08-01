@@ -1,0 +1,24 @@
+<div>Your previous properties</div>
+<%= form_tag previous_properties_path, method: 'post' do %>
+  <% @broker.properties.each do |prop| %>
+    <div class='panel'>
+      <div class='row'>
+        <div class="small-2 columns">
+          <%= check_box_tag 'property_ids[]', prop.id %>
+        </div>
+        <div class="small-2 columns">
+          <%= prop.image_url %>
+        </div>
+        <div class="small-8 columns">
+          Address: <%= prop.address %><br>
+          Sq Ft: <%= prop.sq_ft %>
+        </div>
+      </div>
+    </div>
+  <% end %>
+
+  <%= hidden_field_tag :lead_id, @lead.id %>
+
+  <%= submit_tag 'Submit', class: "button cust-btn" %>
+<% end %>
+  

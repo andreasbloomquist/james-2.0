@@ -39,11 +39,13 @@ module SmsHelper
   # and trigger sms to broker
   ###########
 
-  def send_property_response(body)
+  def send_property_response(body, number)
     property = Property.find_by_response_code(body)
     broker_fn = property.broker.first_name
-    lead = property.lead
-    user_number = lead.user.phone_number
+    user = User.find_by_phone_number(number)
+    lead = property.leads.where(user_id: user.id)
+
+    user_number = user.phone_number
     broker_number = property.broker.phone_number
 
     user_response = "Great! I’ll let #{broker_fn}, the broker, know you’re interested. I'll work on getting some times he's available. Here's #{broker_fn}'s number just to reach them directly, #{broker_number}"
@@ -57,7 +59,7 @@ module SmsHelper
       })
 
     bitly_link = Bitly.client.shorten("https://www.textjames.co/appointments/#{appointment.availability_url}")
-    broker_msg = "Hey #{broker_fn}, #{lead.user.name} is interested in the #{property.address} #{property.sq_ft} sq ft space! I’ve given them your number to reach out but in the meantime, why not get started on suggesting some tour times: #{bitly_link.short_url}"
+    broker_msg = "Hey #{broker_fn}, #{user.name} is interested in the #{property.address} #{property.sq_ft} sq ft space! I’ve given them your number to reach out but in the meantime, why not get started on suggesting some tour times: #{bitly_link.short_url}"
 
 
     # Respond to user
@@ -247,12 +249,12 @@ module SmsHelper
       property.image_url.files.each {|x| image_arr.push(x.cdn_url)}
       create_sms_msg(to, broker_msg)
 
-      @@client.messages.create(
-        from: '+14158010226', 
-        to: to,
-        body: "A few images from the broker",
-        media_url: image_arr
-        )
+      # @@client.messages.create(
+      #   from: '+14158010226', 
+      #   to: to,
+      #   body: "A few images from the broker",
+      #   media_url: image_arr
+      #   )
     else
       create_sms_msg(to, broker_msg)
     end

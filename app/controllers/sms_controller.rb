@@ -19,7 +19,7 @@ class SmsController < ApplicationController
       create_user(params)
 
     elsif property_respose? @body
-      send_property_response(@body)
+      send_property_response(@body, sender)
 
     elsif fresh_start?(@body)
       start_fresh_lead(sender)
