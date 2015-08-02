@@ -42,7 +42,7 @@ module SmsHelper
     property = Property.find_by_response_code(body)
     broker_fn = property.broker.first_name
     user = User.find_by_phone_number(number)
-    lead = property.leads.where(user_id: user.id)
+    lead = property.leads.where(user_id: user.id).last
     user_number = user.phone_number
     broker_number = property.broker.phone_number
     user_response = "Great! I’ll let #{broker_fn}, the broker, know you’re interested. I'll work on getting some times he's available. Here's #{broker_fn}'s number just to reach them directly, #{broker_number}"
@@ -51,8 +51,9 @@ module SmsHelper
       broker_id: property.broker_id,
       property_id: property.id,
       availability_url: SecureRandom.uuid,
-      calendar_url: SecureRandom.uuid,
-      lead_id: lead[0].id,
+      user_cal_url: SecureRandom.uuid,
+      broker_cal_url: SecureRandom.uuid,
+      lead_id: lead.id,
       user_id: user.id
       })
     bitly_link = Bitly.client.shorten("https://www.textjames.co/appointments/#{appointment.availability_url}")

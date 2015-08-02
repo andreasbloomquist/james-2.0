@@ -1,6 +1,6 @@
 class Property < ActiveRecord::Base
   include PropertiesHelper
-  
+
   validates :address, 
             :sub_market, 
             :property_type, 
@@ -16,8 +16,6 @@ class Property < ActiveRecord::Base
   belongs_to :broker
   has_many :appointments
   has_uploadcare_group :image_url
-
-
 
   def self.exists?(params)
     addy = params[:address].split[0..1].join(" ")
