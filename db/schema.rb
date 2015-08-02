@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150801195955) do
+ActiveRecord::Schema.define(version: 20150801234737) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -53,6 +53,8 @@ ActiveRecord::Schema.define(version: 20150801195955) do
     t.integer  "broker_id"
     t.integer  "property_id"
     t.string   "notes"
+    t.integer  "lead_id"
+    t.integer  "user_id"
   end
 
   create_table "brokers", force: :cascade do |t|

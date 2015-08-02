@@ -1,6 +1,6 @@
 class Appointment < ActiveRecord::Base
   belongs_to :broker
   belongs_to :property
-  # validates :option_one, :option_two, :option_three, presence: true
-
+  belongs_to :lead
+  has_one :user
 end

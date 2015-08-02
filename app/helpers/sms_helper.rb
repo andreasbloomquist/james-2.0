@@ -55,7 +55,9 @@ module SmsHelper
       broker_id: property.broker_id,
       property_id: property.id,
       availability_url: SecureRandom.uuid,
-      calendar_url: SecureRandom.uuid
+      calendar_url: SecureRandom.uuid,
+      lead_id: lead[0].id,
+      user_id: user.id
       })
 
     bitly_link = Bitly.client.shorten("https://www.textjames.co/appointments/#{appointment.availability_url}")
