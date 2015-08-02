@@ -7,7 +7,7 @@
   <div class="large-6 large-centered columns">
     <p><strong>Tenant:</strong> <%= @appointment.lead.user.name %> | <strong>Broker:</strong> <%= @appointment.broker.first_name %></p>
     <p><strong>Property:</strong> <%= @appointment.property.address %> | <strong>Sq Ft:</strong> <%= @appointment.property.sq_ft %></p>
-    <p><strong>Tour:</strong> <%= @appointment_time.strftime('%m/%d/%y %l:%M%P') %></p>
+    <p><strong>Tour:</strong> <%= @appointment_start.strftime('%m/%d/%y %l:%M%P') %></p>
   
     <% if @appointment.notes %>
       <p><strong>Notes:</strong> <%= @appointment.notes %></p>
@@ -19,8 +19,8 @@
   <div class="medium-3 medium-centered small-10 small-centered columns">
   <div title="Add to Calendar" class="addthisevent button cust-btn">
       Add to Calendar
-      <span class="start"><%= @appointment_time.strftime('%m/%d/%y %l:%M%P') %></span>
-      <span class="end"><%= @appointment_time.strftime('%m/%d/%y %l:%M%P') %></span>
+      <span class="start"><%= @appointment_start.strftime('%m/%d/%y %l:%M%P') %></span>
+      <span class="end"><%= @appointment_end.strftime('%m/%d/%y %l:%M%P') %></span>
       <span class="timezone">America/Los_Angeles</span>
       <span class="title">Tour <%= @appointment.property.address %> with <%= @appointment.broker.first_name %></span>
       <span class="description">
