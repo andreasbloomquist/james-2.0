@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150715221848) do
+ActiveRecord::Schema.define(version: 20150801234737) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -53,6 +53,8 @@ ActiveRecord::Schema.define(version: 20150715221848) do
     t.integer  "broker_id"
     t.integer  "property_id"
     t.string   "notes"
+    t.integer  "lead_id"
+    t.integer  "user_id"
   end
 
   create_table "brokers", force: :cascade do |t|
@@ -80,6 +82,14 @@ ActiveRecord::Schema.define(version: 20150715221848) do
   end
 
   add_index "leads", ["user_id"], name: "index_leads_on_user_id", using: :btree
+
+  create_table "leads_properties", id: false, force: :cascade do |t|
+    t.integer "lead_id"
+    t.integer "property_id"
+  end
+
+  add_index "leads_properties", ["lead_id"], name: "index_leads_properties_on_lead_id", using: :btree
+  add_index "leads_properties", ["property_id"], name: "index_leads_properties_on_property_id", using: :btree
 
   create_table "properties", force: :cascade do |t|
     t.string   "address"

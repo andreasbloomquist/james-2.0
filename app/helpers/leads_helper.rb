@@ -4,4 +4,11 @@ module LeadsHelper
     user = User.find_by_phone_number(number)
     return user.leads.last.complete
   end
+
+  def image(property)
+    @file = property.image_url.files[0].cdn_url
+    return @file
+  end
+
+
 end

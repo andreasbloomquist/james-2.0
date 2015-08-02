@@ -1,0 +1,35 @@
+<%= form_tag previous_properties_path, method: 'post', class: "custom" do %>
+  <fieldset>
+    <p>Click 1 or more properties below to send your selections to the tenant.</p>
+    <legend>Previous Properties</legend>
+    <% @broker.properties.each do |prop| %>
+      <label for=<%= prop.id %>>
+        <div class='panel cust-panel'>
+          <div class='row'>
+            <div class="small-1 columns">
+              <%= check_box_tag 'property_ids[]', prop.id, nil, :id => prop.id %>
+            </div>
+            <span class="custom checkbox"></span>
+            <div class="small-3 columns">
+              <% if prop.image_url? %>
+                <%= image_tag(image(prop)) %>
+              <% end %>
+            </div>
+            <div class="small-4 columns">
+              <strong>Address:</strong> <%= prop.address %><br>
+              <strong>Sq Ft:</strong> <%= prop.sq_ft %>
+            </div>
+            <div class="small-4 columns">
+              <strong>Description:</strong> <%= prop.description %>
+            </div>
+          </div>
+        </div>
+      </label>
+    <% end %>
+
+    <%= hidden_field_tag :lead_id, @lead.id %>
+
+    <%= submit_tag 'Submit', class: "button cust-btn" %>
+  </fieldset>
+<% end %>
+  

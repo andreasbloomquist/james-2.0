@@ -3,7 +3,10 @@
     <div class="lead-header" id="lead-response">
     	<h1 class="lead-header top">Respond to Lead</h1>
       <p><strong>Desired Market:</strong> <%= @lead.q_one %>, <strong># of people:</strong> <%= @lead.q_two %>, <strong>Vibe:</strong> <%= @lead.q_three %>, <strong>Date:</strong> <%= @lead.q_four %>, <strong>Term length:</strong> <%= @lead.q_five%>, <strong>Notes:</strong> <%= @lead.q_six %></p>
-    	<%= render 'form' %>  
+    	<%= render 'form' %>
+      <% if @broker.properties != [] %>
+        <%= render 'previous_properties' %>
+      <% end %>
     </div>
   </div>
 </div>

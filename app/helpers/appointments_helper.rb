@@ -31,7 +31,7 @@ module AppointmentsHelper
   end
 
   def send_available_times(appointment)
-    user = appointment.property.lead.user
+    user = appointment.lead.user
     available_times_msg = "Hey #{user.name}, I just heard back from the broker. Here are three times they're available to meet: #{appointment.option_one.strftime('%m/%d/%y %l:%M%P')}, reply w/ '1 #{appointment.property.response_code}' for this time. #{appointment.option_two.strftime('%m/%d/%y %l:%M%P')}, reply '2 #{appointment.property.response_code}' for this time. #{appointment.option_three.strftime('%m/%d/%y %l:%M%P')}, reply '3 #{appointment.property.response_code}' for this time."
     create_sms_msg(user.phone_number, available_times_msg)
   end
@@ -40,10 +40,14 @@ module AppointmentsHelper
     user = User.find_by_phone_number(number)
     appt_option = body.split[0]
     response_code = body.split[1]
+
     property = Property.find_by_response_code(response_code)
-    appt = property.appointment
-    response = property.appointment.update_column(:user_response, appt_option)
+    
+    appt = Appointment.where("property_id = ? AND user_id = ?", property.id, user.id).last
+
+    appt.update_column(:user_response, appt_option)
     time = appointment_time(appt)
+
     bitly_cal = Bitly.client.shorten("https://www.textjames.co/appointments/#{appt.calendar_url}/add").short_url
     
     tenant_msg = "Great! You're confirmed for #{time.strftime('%m/%d/%y %l:%M%P')} to meet #{property.broker.first_name} at #{property.address}. Click here to add the tour to your calendar #{bitly_cal}"

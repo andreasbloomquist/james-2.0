@@ -5,6 +5,6 @@ class Broker < ActiveRecord::Base
 
   def self.is_broker?(number)
     @broker = Broker.find_by_phone_number(number)
-    return @broker unless @broker === nil
+    return @broker unless @broker == nil
   end
 end

@@ -23,7 +23,8 @@ class AppointmentsController < ApplicationController
 
   def add_to_cal
     @appointment = Appointment.find_by_calendar_url(params[:calendar_url])
-    @appointment_time = appointment_time(@appointment)
+    @appointment_start = appointment_time(@appointment)
+    @appointment_end = appointment_time(@appointment) + 30*60
   end
 
   private
