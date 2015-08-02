@@ -1,0 +1,46 @@
+<div class="row">
+  <div class="large-8 large-centered columns">
+    <h1 class="broker-check top">Add tour to your calendar</h1>
+  </div>
+</div>
+<div class="row">
+  <div class="large-6 large-centered columns">
+    <p> Tour with <%= @appointment.lead.user.name %> (tenant)</p>
+    <p><strong>Property:</strong> <%= @appointment.property.address %> | <strong>Sq Ft:</strong> <%= @appointment.property.sq_ft %></p>
+    <p><strong>Tour Start:</strong> <%= @appointment_start.strftime('%m/%d/%y %l:%M%P') %> | <strong>Tour End:</strong> <%= @appointment_end.strftime('%m/%d/%y %l:%M%P') %></p>
+    <% if @appointment.notes %>
+      <p><strong>Notes:</strong> <%= @appointment.notes %></p>
+    <% end %>
+  </div>
+</div>
+<div class="row"><br>
+  <div class="medium-3 medium-centered small-10 small-centered columns">
+  <div title="Add to Calendar" class="addthisevent button cust-btn">
+      Add to Calendar
+      <span class="start"><%= @appointment_start.strftime('%m/%d/%y %l:%M%P') %></span>
+      <span class="end"><%= @appointment_end.strftime('%m/%d/%y %l:%M%P') %></span>
+      <span class="timezone">America/Los_Angeles</span>
+      <span class="title">Tour with <%= @appointment.lead.user.name %> (tenant) @ <%= @appointment.property.address %></span>
+      <span class="description">
+        <strong>Property Details</strong>
+        Tenant: <%= @appointment.lead.user.name %>
+        Tenant Phone Number: <%= @appointment.lead.user.phone_number %>
+        
+        Address: <%= @appointment.property.address %>
+        Sub Market: <%= @appointment.property.sub_market %>
+        Sq Ft: <%= @appointment.property.sq_ft %>
+        Property Type:  <%= @appointment.property.property_type %>
+        Available: <%= @appointment.property.available.strftime("%m/%d/%y") %>
+        Description: <%= @appointment.property.description %>
+
+        Min Lease Term: <%= @appointment.property.min %>
+        Max Lease Term: <%= @appointment.property.max %>
+
+        <strong>Special notes about the tour</strong>
+          <%= @appointment.notes %>
+      </span>
+      <span class="location"><%= @appointment.property.address %>, San Francisco, CA</span>
+      <span class="date_format">MM/DD/YYYY</span>
+    </div>
+  </div>
+</div>

@@ -5,9 +5,9 @@
 </div>
 <div class="row">
   <div class="large-6 large-centered columns">
-    <p><strong>Tenant:</strong> <%= @appointment.lead.user.name %> | <strong>Broker:</strong> <%= @appointment.broker.first_name %></p>
+    <p><strong>Tour with <%= @appointment.broker.first_name %> (broker)</p>
     <p><strong>Property:</strong> <%= @appointment.property.address %> | <strong>Sq Ft:</strong> <%= @appointment.property.sq_ft %></p>
-    <p><strong>Tour:</strong> <%= @appointment_start.strftime('%m/%d/%y %l:%M%P') %></p>
+    <p><strong>Tour Start:</strong> <%= @appointment_start.strftime('%m/%d/%y %l:%M%P') %> | <strong>Tour End:</strong> <%= @appointment_end.strftime('%m/%d/%y %l:%M%P') %></p>
   
     <% if @appointment.notes %>
       <p><strong>Notes:</strong> <%= @appointment.notes %></p>
@@ -22,20 +22,27 @@
       <span class="start"><%= @appointment_start.strftime('%m/%d/%y %l:%M%P') %></span>
       <span class="end"><%= @appointment_end.strftime('%m/%d/%y %l:%M%P') %></span>
       <span class="timezone">America/Los_Angeles</span>
-      <span class="title">Tour <%= @appointment.property.address %> with <%= @appointment.broker.first_name %></span>
+      <span class="title">Tour <%= @appointment.property.address %> with <%= @appointment.broker.first_name %> (broker) @ <%= @appointment.property.address %> </span>
       <span class="description">
         <strong>Property Details</strong>
+        Broker: <%= @appointment.broker.first_name %>
+        Broker Phone Number: <%= @appointment.broker.phone_number %>
+
         Address: <%= @appointment.property.address %>
         Sub Market: <%= @appointment.property.sub_market %>
         Property Type:  <%= @appointment.property.property_type %>
         Sq Ft: <%= @appointment.property.sq_ft %>
+        
         Available: <%= @appointment.property.available.strftime("%m/%d/%y") %>
         Description: <%= @appointment.property.description %>
+
+        Min Lease Term: <%= @appointment.property.min %>
+        Max Lease Term: <%= @appointment.property.max %>
         
         <strong>Special notes about the tour</strong>
           <%= @appointment.notes %>
       </span>
-      <span class="location"><%= @appointment.property.address %></span>
+      <span class="location"><%= @appointment.property.address %>, San Francisco, CA</span>
       <span class="date_format">MM/DD/YYYY</span>
     </div>
   </div>
