@@ -1,5 +1,6 @@
 <%= form_tag previous_properties_path, method: 'post', class: "custom" do %>
   <fieldset>
+    <p>Click 1 or more properties below to send your selections to the tenant.</p>
     <legend>Previous Properties</legend>
     <% @broker.properties.each do |prop| %>
       <label for=<%= prop.id %>>
@@ -14,12 +15,12 @@
                 <%= image_tag(image(prop)) %>
               <% end %>
             </div>
-            <div class="small-2 columns">
-              Address: <%= prop.address %><br>
-              Sq Ft: <%= prop.sq_ft %>
+            <div class="small-4 columns">
+              <strong>Address:</strong> <%= prop.address %><br>
+              <strong>Sq Ft:</strong> <%= prop.sq_ft %>
             </div>
-            <div class="small-6 columns">
-              Description: <%= prop.description %>
+            <div class="small-4 columns">
+              <strong>Description:</strong> <%= prop.description %>
             </div>
           </div>
         </div>
