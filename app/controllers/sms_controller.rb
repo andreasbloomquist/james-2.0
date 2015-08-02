@@ -12,7 +12,7 @@ class SmsController < ApplicationController
     sender = params[:From]
     @body = params[:Body]
     
-    if is_easter?(@body)
+    if easter?(@body)
       return send_easter_egg(sender)
       
     elsif new_user?(sender)

@@ -1,5 +1,15 @@
 class Property < ActiveRecord::Base
-  validates :address, :sub_market, :property_type, :sq_ft, :rent_price, :available, :lead_id, presence: true
+  include PropertiesHelper
+  
+  validates :address, 
+            :sub_market, 
+            :property_type, 
+            :sq_ft, 
+            :rent_price, 
+            :available, 
+            :lead_id, 
+            presence: true
+
   validates :sq_ft, :rent_price, numericality: true
 
   has_and_belongs_to_many :leads
@@ -7,7 +17,7 @@ class Property < ActiveRecord::Base
   has_many :appointments
   has_uploadcare_group :image_url
 
-  include PropertiesHelper
+
 
   def self.exists?(params)
     addy = params[:address].split[0..1].join(" ")
