@@ -271,7 +271,7 @@ module SmsHelper
     property_found_msg = "Hey #{user.name}! James, here. Good news, I’ve found properties for you that work. A broker validated these and just sent them in. Here they are:"
 
     # Send property found message
-    create_sms_msg(to, property_found_msg)
+    # create_sms_msg(to, property_found_msg)
 
     # Iterate through array of properties and send appropriate texts for each property
     properties.each do |id|
@@ -282,22 +282,22 @@ module SmsHelper
 
       
       # Send details of property
-      create_sms_msg(to, property_details_msg)
+      # create_sms_msg(to, property_details_msg)
 
       # Check to see if the response includes a picture
       if has_media? prop
         image_arr = []
         prop.image_url.files.each {|x| image_arr.push(x.cdn_url)}
-        create_sms_msg(to, broker_msg)
+        # create_sms_msg(to, broker_msg)
 
-        @@client.messages.create(
-          from: '+14158010226', 
-          to: to,
-          body: "A few images from the broker for the #{prop.address} space",
-          media_url: image_arr
-          )
+        # @@client.messages.create(
+        #   from: '+14158010226', 
+        #   to: to,
+        #   body: "A few images from the broker for the #{prop.address} space",
+        #   media_url: image_arr
+        #   )
       else
-        create_sms_msg(to, broker_msg)
+        # create_sms_msg(to, broker_msg)
       end
     end
   end

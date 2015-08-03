@@ -28,8 +28,12 @@
     <% end %>
 
     <%= hidden_field_tag :lead_id, @lead.id %>
+    
+    <div class="test">
+      <%= submit_tag 'Submit', class: "button cust-btn prevSub", disabled: true  %>
+      <%= render 'layouts/spinner' %>
+    </div>
 
-    <%= submit_tag 'Submit', class: "button cust-btn" %>
   </fieldset>
 <% end %>
   
