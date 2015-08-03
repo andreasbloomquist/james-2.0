@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
-  root 'welcome#index'
+
+  root 'construction#index'
+  post '/construction', to: 'construction#email', as: 'add_email'
 
   resources :brokers
   get '/home', to: 'welcome#index'
@@ -17,9 +19,12 @@ Rails.application.routes.draw do
 
   get '/appointments/:availability_url/', to: 'appointments#show', as: 'schedule_appointment'
   get '/appointments/:availability_url/thank-you', to: 'appointments#thank_you', as: 'appointment_submitted'
+  
   patch '/appointments/:availability_url', to: 'appointments#update', as: 'appointment'
 
   post '/properties/', to: 'properties#create', as: 'new_property'
+  post '/properties/previous', to: 'properties#previous', as: 'previous_properties'
 
-  get '/appointments/:calendar_url/add', to: 'appointments#add_to_cal', as: 'calendar'
+  get '/appointments/:user_cal_url/user', to: 'appointments#add_user_cal', as: 'user_calendar'
+  get '/appointments/:broker_cal_url/broker', to: 'appointments#add_broker_cal', as: 'broker_calendar'
 end

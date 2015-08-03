@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150715221848) do
+ActiveRecord::Schema.define(version: 20150803150203) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -48,11 +48,14 @@ ActiveRecord::Schema.define(version: 20150715221848) do
     t.datetime "option_two"
     t.datetime "option_three"
     t.string   "user_response"
-    t.string   "calendar_url"
+    t.string   "user_cal_url"
     t.string   "availability_url"
     t.integer  "broker_id"
     t.integer  "property_id"
     t.string   "notes"
+    t.integer  "lead_id"
+    t.integer  "user_id"
+    t.string   "broker_cal_url"
   end
 
   create_table "brokers", force: :cascade do |t|
@@ -63,6 +66,10 @@ ActiveRecord::Schema.define(version: 20150715221848) do
     t.string   "company"
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
+  end
+
+  create_table "constructions", force: :cascade do |t|
+    t.string "email"
   end
 
   create_table "leads", force: :cascade do |t|
@@ -80,6 +87,14 @@ ActiveRecord::Schema.define(version: 20150715221848) do
   end
 
   add_index "leads", ["user_id"], name: "index_leads_on_user_id", using: :btree
+
+  create_table "leads_properties", id: false, force: :cascade do |t|
+    t.integer "lead_id"
+    t.integer "property_id"
+  end
+
+  add_index "leads_properties", ["lead_id"], name: "index_leads_properties_on_lead_id", using: :btree
+  add_index "leads_properties", ["property_id"], name: "index_leads_properties_on_property_id", using: :btree
 
   create_table "properties", force: :cascade do |t|
     t.string   "address"

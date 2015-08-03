@@ -18,6 +18,13 @@ $yellow: #ffde00;
 $green: #00be7e;
 $blue: #00cccc;
 $light-red: rgba(255,67,63,0.75);
+
+.cust-modal{
+  background-color: $green;
+  a.close-reveal-modal.cust-x{
+    color: black;
+  }
+}
 .message{
   color: $red;
   background-color: rgba(255, 255, 255, 0.6);
@@ -339,6 +346,17 @@ footer{
   font-size: 3rem;
   text-align: center;
   }
+}
+.panel.cust-panel {
+    transition: all 0.5s ease;
+    background-color: rgba(255,255,255,0.5);
+    border: none;
+    text-align: left;
+    &:hover{
+      transition: all 0.5s ease;
+      cursor: pointer;
+      background-color: $yellow;
+    }
 }
 
 // Media queries
