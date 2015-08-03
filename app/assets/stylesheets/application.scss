@@ -18,6 +18,13 @@ $yellow: #ffde00;
 $green: #00be7e;
 $blue: #00cccc;
 $light-red: rgba(255,67,63,0.75);
+
+.cust-modal{
+  background-color: $green;
+  a.close-reveal-modal.cust-x{
+    color: black;
+  }
+}
 .message{
   color: $red;
   background-color: rgba(255, 255, 255, 0.6);

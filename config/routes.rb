@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   root 'construction#index'
-
+  post '/construction', to: 'construction#email', as: 'add_email'
   resources :brokers
   get '/home', to: 'welcome#index'
   post 'sms/received', to: 'sms#received', as: 'received'

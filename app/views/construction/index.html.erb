@@ -15,6 +15,31 @@
 
     <div class="row">
       <div class="small-8 small-centered columns">
-        <h2 class="broker-check">Check back soon for updates!</h2>
+        <h2 class="broker-check">Wanna learn more? Leave me your email and I'll send you more info soon!</h2>
+        <a href="#" data-reveal-id="myModal" class="button cust-btn">Click here</a>
       </div>
     </div>
+
+    <div id="myModal" class="reveal-modal small cust-modal" data-reveal aria-labelledby="modalTitle" aria-hidden="true" role="dialog">
+      <h2 class="broker-check">Learn more!</h2>
+      <p class="broker-check">Leave your email and I'll let you know more about what I do and when we launch to the public!</p>
+
+      <%= form_for @construction, url: '/construction/', method: 'post', class: "custom", remote: true do |f|%>
+        <div class="medium-10 medium-centered columns">
+          <%= f.label "Email Address" %>
+          <%= f.email_field :email, class: 'prop-form', placeholder: "example@textjames.co" %>
+          <%= f.submit 'Submit', class: "button cust-btn" %>
+        </div>
+      <% end %>
+      <a class="close-reveal-modal cust-x" aria-label="Close">&#215;</a>
+    </div>
+
+    <div id="thanksModal" class="reveal-modal small cust-modal" data-reveal aria-labelledby="modalTitle" aria-hidden="true" role="dialog">
+      <h2 class="broker-check">Thanks!</h2>
+      <p class="broker-check">Don't worry, you won't get spammed. I'll just let you know we're nearing our launch.</p>
+      <a class="close-reveal-modal cust-x" aria-label="Close">&#215;</a>
+    </div>
+
+
+
+
