@@ -9,7 +9,7 @@
       <div class="medium-6 columns">
         <%= f.label "Sub-Market*" %>
         <%= f.select :sub_market, options_for_select([["North Financial"], ["South Financial"], ["SOMA"], ["Mid-Market"], ["Jackson Square"], ["Showplace Square"], [
-          "Mission"], ["Potrero"], ["Union Square"], ["North Waterfront"], ["Yerba Buena"]]), {prompt: "Select sub market"}, {required: 'true', class: "prop-form"}%>
+          "Mission"], ["Potrero"], ["Union Square"], ["North Waterfront"], ["Yerba Buena"]]), { prompt: "Select Sub Market"}, {required: 'true', class: "prop-form"}%>
       </div>
     </div>
     <div class="row">
@@ -40,21 +40,14 @@
       </div>
     </div>
     <div class="row">
-      <div class="medium-5 small-10 columns sqft">
+      <div class="medium-6 small-12 columns sqft">
         <%= f.label "Minumum Lease Term (months)" %>
         <%= f.telephone_field :min, class: "prop-form", placeholder: "Ex: '12'" %>
       </div>
-      <div class="medium-1 small-2 columns sqft">
-        <span class="postfix sqft">months</span>
-      </div>
-      <div class="medium-5 small-10 columns sqft">
+      <div class="medium-6 small-12 columns sqft">
         <%= f.label "Maximum Lease Term (months)" %>
         <%= f.telephone_field :max, class: "prop-form", placeholder: "Ex: '24'" %>
       </div>
-      <div class="medium-1 small-2 columns sqft">
-        <span class="postfix sqft">months</span>
-      </div>
-
     </div>
     <div class="row">
       <div class="small-12 small-centered columns">
@@ -66,7 +59,7 @@
       <div class="medium-12 columns">
         <%= f.label "Add an image" %>
         <%= f.uploadcare_multiple_uploader_field :image_url %>
-        <p class="legal">*Photos, flyers, & floor plans only, and must be your own.</p>
+        <p class="legal">You may include multiple photos by clicking the menu and selecting multiple photos from your prefered source<br>*Photos, flyers, & floor plans only, and must be your own.</p>
       </div>
     </div><br>
     
@@ -75,7 +68,10 @@
     
     <div class="row">
       <div class="small-12 small-centered columns">
-        <%= f.submit "Submit", class: "button cust-btn"%>
+        <div class="test">
+          <%= f.submit "Submit", class: "button cust-btn"%>
+          <%= render 'layouts/spinner' %>
+        </div>
       </div>
     </div>
   </fieldset>
