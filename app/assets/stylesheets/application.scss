@@ -4,11 +4,14 @@
 
 @import "foundation_and_overrides";
 @import 'foundation-icons';
+
 /*
  *= require foundation_and_overrides
  *= require welcome
  *= require admin
+ *= require spinners/5-pulse
  */
+
 $title-font: 'Pacifico', cursive;
 $primary-font: 'Josefin Sans', sans-serif;
 $secondary-font: 'Arvo', serif;
@@ -94,7 +97,7 @@ div#atedrop1 {
   background-color: rgba(0,0,0,0);
   border: 2px solid black;
   font-family: $primary-font;
-  &:hover{
+  &:hover:enabled{
     background-color: $yellow;
     color: $red; 
     border-color: white;
@@ -369,6 +372,56 @@ footer{
   }
 }
 
+.test{
+  position: relative;
+}
+.spinner {
+  margin: auto;
+  text-align: center;
+  display: none;
+  position: absolute;
+  top: 12%;
+  left: 47%;
+  height: 40px;
+  width: 40px;
+  z-index: 10;
+}
+
+.double-bounce1, .double-bounce2 {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background-color: #333;
+  opacity: 0.6;
+  position: absolute;
+  top: 0;
+  left: 0;
+  -webkit-animation: sk-bounce 2.0s infinite ease-in-out;
+  animation: sk-bounce 2.0s infinite ease-in-out;
+}
+
+.double-bounce2 {
+  -webkit-animation-delay: -1.0s;
+  animation-delay: -1.0s;
+}
+
+@-webkit-keyframes sk-bounce {
+  0%, 100% { -webkit-transform: scale(0.0) }
+  50% { -webkit-transform: scale(1.0) }
+}
+
+@keyframes sk-bounce {
+  0%, 100% { 
+    transform: scale(0.0);
+    -webkit-transform: scale(0.0);
+  } 50% { 
+    transform: scale(1.0);
+    -webkit-transform: scale(1.0);
+  }
+}
+
+
+
 @media (max-width: 420px) {
   #title{
     font-size: 3.25rem;
@@ -399,5 +452,9 @@ footer{
   }
   .container-head{
     font-size: 3rem;
+  }
+  .spinner {
+    top: 18%;
+    left: 44%;
   }
 }

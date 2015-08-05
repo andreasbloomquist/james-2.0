@@ -5,9 +5,10 @@
 //= require foundation-datetimepicker
 //= require rails.validations
 
-$(function(){ 
+$(document).ready(function(){ 
   $(document).foundation();
   $('.datetimepicker').fdatetimepicker()
+
 });
 
 $(window).bind("load", function () {
