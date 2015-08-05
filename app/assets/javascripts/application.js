@@ -7,7 +7,13 @@
 
 $(document).ready(function(){ 
   $(document).foundation();
-  $('.datetimepicker').fdatetimepicker()
+  $('.datetimepicker').fdatetimepicker({
+    minuteStep: 30,
+    autoclose: true,
+    linkField: true,
+    daysOfWeekDisabled: [0,6]
+  })
+
 
 });
 
