@@ -6,20 +6,23 @@
 
   </div>
 </div>
+
+<!-- TODO -->
+<!-- CREATE HELPER TO FORMAT TIME!!!!!!!!! -->
 <div class="row">
   <div class="medium-6 medium-centered small-10 small-centered columns">
     <%= form_for @appointment, method: 'patch' do |f| %>
       <div class="date">
         <%= f.label :option_one %>
-        <%= f.text_field :option_one, class: "prop-form datetimepicker", placeholder: "Select a date", required: true, readonly: true %><br>
+        <%= f.text_field :option_one, class: "prop-form datetimepicker", placeholder: "Select a date", required: true, readonly: true, value: (@appointment.option_one.blank? ? '' : @appointment.option_one.strftime('%m/%d/%Y %l:%M%p')) %><br>
       </div>
       <div class="date">
         <%= f.label :option_two %>
-        <%= f.text_field :option_two, class: "prop-form datetimepicker", placeholder: "Select a date", required: true, readonly: true  %><br>
+        <%= f.text_field :option_two, class: "prop-form datetimepicker", placeholder: "Select a date", required: true, readonly: true, value: (@appointment.option_one.blank? ? '' : @appointment.option_one.strftime('%m/%d/%Y %l:%M%p'))  %><br>
       </div>
       <div class="date">
         <%= f.label :option_three %>
-        <%= f.text_field :option_three, class: "prop-form datetimepicker", placeholder: "Select a date", required: true, readonly: true  %><br>
+        <%= f.text_field :option_three, class: "prop-form datetimepicker", placeholder: "Select a date", required: true, readonly: true, value: (@appointment.option_one.blank? ? '' : @appointment.option_one.strftime('%m/%d/%Y %l:%M%p'))  %><br>
       </div>
       <div>
         <%= f.label "Any special notes or contacts?" %>
