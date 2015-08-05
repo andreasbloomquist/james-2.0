@@ -303,8 +303,8 @@ module SmsHelper
   end
 
   def has_media?(property)
-    return false if property.image_url == nil
-    return true if property.image_url != nil
+    return false if property.image_url.files == nil
+    return true if property.image_url.files != nil
   end
 
   #############

@@ -13,3 +13,5 @@
 /tmp
 .env
 .DS_Store
+combined.crt
+server.key
