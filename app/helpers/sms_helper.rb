@@ -163,7 +163,7 @@ module SmsHelper
         response_url: SecureRandom.uuid
         })
       create_sms_msg(number, @sending_to_broker)
-      trigger_lead(@user_lead)   
+      trigger_lead(@user_lead)
       return render nothing: true
     else
       response_msg = "Hmm, I didn't quite get that, but it looks like you have an open request and our brokers are on it! If you want to submit a new request or start over, just reply 'fresh start'"
