@@ -6,10 +6,8 @@ module LeadsHelper
   end
 
   def image(property)
-    if property.image_url.files != nil
-      @file = property.image_url.files[0].cdn_url
-      return @file
-    end
+    @file = property.image_url.load.files[0].cdn_url
+    return @file
   end
 
 
