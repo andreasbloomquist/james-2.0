@@ -12,7 +12,6 @@ class PropertiesController < ApplicationController
       flash[:error] = prop_exists_err
       redirect_to :back
     elsif @property.save
-      @property.image_url.load if @property.image_url != nil
       @property.leads << @lead
       @phone_number = @lead.user.phone_number
       create_response_code @property

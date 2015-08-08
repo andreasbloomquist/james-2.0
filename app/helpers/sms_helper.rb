@@ -11,7 +11,6 @@ module SmsHelper
   ###########
   # Helper method to check if the number texting Twilio is a new number to the system
   ###########
-
   def new_user?(number)
     return true if User.find_by_phone_number(number) == nil
   end
@@ -19,18 +18,36 @@ module SmsHelper
   ###########
   # Helper method to check if the users text is in response to a property
   ###########
-
   def property_respose?(body)
     sanitized_body = body.downcase
     return true unless Property.find_by_response_code(sanitized_body) == nil
   end
 
+  ######################## 
+  # Helper to create an SMS message (plain text)
+  ########################
   def create_sms_msg(to, body)
     @@client.messages.create({
         from: '+14158010226',
         to: to,
         body: body
       })
+  end
+
+  ######################## 
+  # Helper to create an MMS message (include images)
+  ########################
+  def create_mms_msg(to, property)
+    image_arr = []
+    property.image_url.load.files.each {|x| image_arr.push(x.cdn_url)}
+
+    @@client.messages.create(
+      from: '+14158010226', 
+      to: to,
+      body: "A few images from the broker for the #{property.address} space",
+      media_url: image_arr
+    )
+
   end
 
   ###########
@@ -241,23 +258,14 @@ module SmsHelper
     # Send details of property
     create_sms_msg(to, property_details_msg)
 
-    # Check to see if the response includes a picture
-    if has_media? property
-      image_arr = []
-      property.image_url.files.each {|x| image_arr.push(x.cdn_url)}
-      create_sms_msg(to, broker_msg)
+    # Send broker notes
+    create_sms_msg(to, broker_msg)
 
-      @@client.messages.create(
-        from: '+14158010226', 
-        to: to,
-        body: "A few images from the broker",
-        media_url: image_arr
-        )
-    else
-      create_sms_msg(to, broker_msg)
+    # Check to see if the response includes a picture
+    if property.image_url?
+      create_mms_msg(to, property)
     end
   end
-
 
   ######################
   # send_previous_props helper
@@ -280,37 +288,22 @@ module SmsHelper
       property_details_msg = "#{prop.address} - #{prop.sq_ft}sq ft #{prop.property_type} in #{prop.sub_market} for #{prop.max} months at $#{prop.rent_price}/ft starting rent - available #{prop.available.strftime("%m/%d/%y")}."
       broker_msg = "Here's what the broker said, '#{prop.description}'. Reply with #{prop.response_code} to connect with the broker."
 
-      
       # Send details of property
       create_sms_msg(to, property_details_msg)
 
-      # Check to see if the response includes a picture
-      if has_media? prop
-        image_arr = []
-        prop.image_url.files.each {|x| image_arr.push(x.cdn_url)}
-        create_sms_msg(to, broker_msg)
+      # Send notes from broker
+      create_sms_msg(to, broker_msg)
 
-        @@client.messages.create(
-          from: '+14158010226', 
-          to: to,
-          body: "A few images from the broker for the #{prop.address} space",
-          media_url: image_arr
-          )
-      else
-        create_sms_msg(to, broker_msg)
+      # Check to see if the response includes a picture
+      if prop.image_url?
+        create_mms_msg(to, prop)
       end
     end
-  end
-
-  def has_media?(property)
-    return false if property.image_url.files == nil
-    return true if property.image_url.files != nil
   end
 
   #############
   # EASTER EGG
   #############
-
   def easter?(body)
     sanitized = body.downcase
     return true if sanitized == 'hired'
