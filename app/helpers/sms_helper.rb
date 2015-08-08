@@ -254,12 +254,14 @@ module SmsHelper
     # When a new property is submitted the following series of texts are sent
     # First message about property being found
     create_sms_msg(to, property_found_msg)
+    sleep 2
 
     # Send details of property
     create_sms_msg(to, property_details_msg)
-
+    sleep 2
     # Send broker notes
     create_sms_msg(to, broker_msg)
+    sleep 2
 
     # Check to see if the response includes a picture
     if property.image_url?
@@ -280,6 +282,7 @@ module SmsHelper
 
     # Send property found message
     create_sms_msg(to, property_found_msg)
+    sleep 2
 
     # Iterate through array of properties and send appropriate texts for each property
     properties.each do |id|
@@ -287,13 +290,12 @@ module SmsHelper
       prop.leads << lead
       property_details_msg = "#{prop.address} - #{prop.sq_ft}sq ft #{prop.property_type} in #{prop.sub_market} for #{prop.max} months at $#{prop.rent_price}/ft starting rent - available #{prop.available.strftime("%m/%d/%y")}."
       broker_msg = "Here's what the broker said, '#{prop.description}'. Reply with #{prop.response_code} to connect with the broker."
-
       # Send details of property
       create_sms_msg(to, property_details_msg)
-
+      sleep 3
       # Send notes from broker
       create_sms_msg(to, broker_msg)
-
+      sleep 2
       # Check to see if the response includes a picture
       if prop.image_url?
         create_mms_msg(to, prop)
