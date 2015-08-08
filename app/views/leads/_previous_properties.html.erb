@@ -12,7 +12,7 @@
             <span class="custom checkbox"></span>
             <div class="small-3 columns">
             <% if prop.image_url? %>
-              <%= image_tag(prop.image_url.load.files[0].cdn_url) %>
+              <%= image_tag(image prop) %>
             <% end %>
             </div>
             <div class="small-4 columns">
