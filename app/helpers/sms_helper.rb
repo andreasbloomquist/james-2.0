@@ -44,7 +44,7 @@ module SmsHelper
     @@client.messages.create(
       from: '+14158010226', 
       to: to,
-      body: "A few images from the broker for the #{property.address} space",
+      body: "A few images for #{property.address} from #{property.broker.first_name}",
       media_url: image_arr
     )
 
@@ -246,23 +246,22 @@ module SmsHelper
 
   def send_property(to, property)
     user = User.find_by_phone_number(to)
-    
-    property_found_msg = "Hey #{user.name}! James, here. Good news, I’ve found properties for you that work. A broker validated these and just sent them in. Here they are:"
-    property_details_msg = "#{property.address} - #{property.sq_ft}sq ft #{property.property_type} in #{property.sub_market} for #{property.max} months at $#{property.rent_price}/ft starting rent - available #{property.available.strftime("%m/%d/%y")}."
-    broker_msg = "Here's what the broker said, '#{property.description}'. Reply with #{property.response_code} to connect with the broker."
-
+    property_found_msg = "Hey #{user.name}! James, here. Good news, I’ve found a property for you that work. #{property.broker.first_name} just sent this one in:"
+    property_details_msg = "#{property.address} - #{property.sq_ft}sq ft #{property.property_type} space for lease in #{property.sub_market} for #{property.min}-#{property.max} months at $#{property.rent_price}/ft starting rent. Available #{property.available.strftime("%m/%d/%y")}."
+    broker_msg = "Here are the notes the broker left you: '#{property.description}'"
+    response_code_msg = "Reply with #{property.response_code} to get the contact info for #{property.broker.first_name}. I'll work on getting some tour times in the meantime."
     # When a new property is submitted the following series of texts are sent
     # First message about property being found
     create_sms_msg(to, property_found_msg)
-    sleep 2
-
+    sleep 1
     # Send details of property
     create_sms_msg(to, property_details_msg)
-    sleep 2
+    sleep 1
     # Send broker notes
     create_sms_msg(to, broker_msg)
-    sleep 2
-
+    sleep 1
+    create_sms_msg(to, response_code_msg)
+    sleep 1
     # Check to see if the response includes a picture
     if property.image_url?
       create_mms_msg(to, property)
@@ -277,25 +276,30 @@ module SmsHelper
 
   def send_previous_properties(to, properties, lead)
     user = User.find_by_phone_number(to)
-
-    property_found_msg = "Hey #{user.name}! James, here. Good news, I’ve found properties for you that work. A broker validated these and just sent them in. Here they are:"
-
+    property = Property.find(properties[0])
+    property_found_msg = "Hey #{user.name}! James, here. Good news, I’ve found a property for you that work. #{property.broker.first_name} just sent this one in:"
     # Send property found message
     create_sms_msg(to, property_found_msg)
-    sleep 2
+    sleep 1
 
     # Iterate through array of properties and send appropriate texts for each property
     properties.each do |id|
       prop = Property.find(id.to_i)
       prop.leads << lead
-      property_details_msg = "#{prop.address} - #{prop.sq_ft}sq ft #{prop.property_type} in #{prop.sub_market} for #{prop.max} months at $#{prop.rent_price}/ft starting rent - available #{prop.available.strftime("%m/%d/%y")}."
-      broker_msg = "Here's what the broker said, '#{prop.description}'. Reply with #{prop.response_code} to connect with the broker."
+      property_details_msg = "#{prop.address} - #{prop.sq_ft}sq ft #{prop.property_type} space for lease in #{prop.sub_market} for #{prop.min}-#{prop.max} months at $#{prop.rent_price}/ft starting rent. Available #{prop.available.strftime("%m/%d/%y")}."
+      broker_msg = "Here are the notes the broker left you: '#{prop.description}'"
+      response_code_msg = "Reply with #{prop.response_code} to get the contact info for #{prop.broker.first_name}. I'll work on getting some tour times in the meantime."
+
       # Send details of property
       create_sms_msg(to, property_details_msg)
-      sleep 3
+      sleep 2
       # Send notes from broker
       create_sms_msg(to, broker_msg)
-      sleep 2
+      sleep 1
+
+      create_sms_msg(to, response_code_msg)
+      sleep 1
+
       # Check to see if the response includes a picture
       if prop.image_url?
         create_mms_msg(to, prop)
