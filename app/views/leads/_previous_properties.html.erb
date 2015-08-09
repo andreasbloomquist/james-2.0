@@ -2,7 +2,7 @@
   <fieldset>
     <p>Click 1 or more properties below to send your selections to the tenant.</p>
     <legend>Previous Properties</legend>
-    <% @broker.properties.each do |prop| %>
+    <% @broker.properties.order(created_at: :desc).each do |prop| %>
       <label for=<%= prop.id %>>
         <div class='panel cust-panel'>
           <div class='row'>
@@ -13,11 +13,14 @@
             <div class="small-3 columns">
               <% if prop.image_url? %>
                 <%= image_tag(image prop) %>
+              <% else %>
+                No Image :(
               <% end %>
             </div>
             <div class="small-4 columns">
               <strong>Address:</strong> <%= prop.address %><br>
-              <strong>Sq Ft:</strong> <%= prop.sq_ft %>
+              <strong>Sq Ft:</strong> <%= prop.sq_ft %><br>
+              <strong>Added:</strong> <%= time_ago_in_words(prop.created_at) + " ago " %><i class="fi-clock"></i>
             </div>
             <div class="small-4 columns">
               <strong>Description:</strong> <%= prop.description %>

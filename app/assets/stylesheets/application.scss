@@ -80,7 +80,7 @@ span.postfix.sqft {
 #top-container{
   background-color: $light-red;
 }
-div#atedrop1 {
+div#datedrop1 {
   display: block;
   text-align: center;
   border-radius: 0;
@@ -367,6 +367,9 @@ footer{
       transition: all 0.5s ease;
       cursor: pointer;
       background-color: $yellow;
+      img {
+        border: 1.8px solid $red;
+      }
     }
 }
 

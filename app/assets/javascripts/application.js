@@ -16,6 +16,7 @@ $(document).ready(function(){
     daysOfWeekDisabled: [0,6]
   });
 
+
 });
 
 $(window).bind("load", function () {

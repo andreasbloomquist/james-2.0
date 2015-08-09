@@ -13,15 +13,26 @@
 
 <script type="text/javascript">
     $('input[type=checkbox]').on('click', function(e){
-
-    if ($(this)[0].checked){
+      var $boxes = $('input[type=checkbox]');
+    if (checkForCheck($boxes)){
       $('.prevSub').removeAttr('disabled');
     } else {
       $('.prevSub').attr('disabled','disabled');
     };
   });
+
   $('form').on('submit', function(){
     $(this).find('input[type=submit]').attr('disabled', 'disabled');
     $(this).find('.spinner').css('display', 'block');
   });
+
+  var checkForCheck = function(boxes){
+    var numBoxes = boxes.length
+    for (var i=0; i < numBoxes; i++){
+      if(boxes[i].checked){
+        return true;
+      }
+    }
+    return false;
+  }
 </script>
