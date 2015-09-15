@@ -113,7 +113,7 @@ module SmsHelper
 
     @question_two = 'Ok, and how many people do you need space for?'
     @question_three = 'Do you want a creative/tech or more traditional feel?'
-    @question_four = "And when do you need it by? Plz give me a date ex: '9/1/15'"
+    @question_four = "And when do you need it by? Please give me a date ex: '9/1/15'"
     @question_five = "Sounds good. How long do you think you'll need the space for? Year or less, 1-3 years, or more than 3 years?"
     @question_six = 'Great! Finally, respond with any notes or special requests and my brokers will get right on this!'
     @sending_to_broker = 'I have a team of brokers on this right now, so hang tight! I’ll reach out very soon with more info, no need to reply to this text'
