@@ -23,8 +23,9 @@ class SessionsController < ApplicationController
     @number = "+1#{params[:broker][:phone_number]}"
     @broker = Broker.is_broker?(@number)
     if @broker
-      set_broker_cookie(@broker.id)
-      redirect_to respond_to_lead_path(cookies[:lead])
+      @broker.set_auth_code      
+      # set_broker_cookie(@broker.id)
+      # redirect_to respond_to_lead_path(cookies[:lead])
     else
       flash[:success] = "Sorry, we weren't able to find that number"
       redirect_to authenticate_broker_path
