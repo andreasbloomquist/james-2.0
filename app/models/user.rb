@@ -14,9 +14,8 @@ class User < ActiveRecord::Base
 
   def new_lead
     leads.create({})
-
     new_start_msg = 'Got it, you want to start over, not a problem!' 
-    create_sms_msg(phone_number, new_start_msg)
+    create_sms_msg(ph one_number, new_start_msg)
     create_sms_msg(phone_number, @@question_one)
   end
 
