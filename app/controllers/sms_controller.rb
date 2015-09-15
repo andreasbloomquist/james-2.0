@@ -16,7 +16,8 @@ class SmsController < ApplicationController
       return send_easter_egg(sender)
       
     elsif new_user?(sender)
-      create_user(params)
+      User.create_user(params)
+      render nothing: true
 
     elsif stop_response? @body
       User.find_by_phone_number(sender).update_to_inactive
@@ -40,8 +41,8 @@ class SmsController < ApplicationController
     end
   end
 
-  private
 
+  private
   def stop_response?(body)
     sanitized = body.downcase
     return true if sanitized === 'stop' || sanitized === 'unsubscribe' || sanitized === 'cancel' || sanitized === 'end' || sanitized === 'quit'
@@ -50,5 +51,14 @@ class SmsController < ApplicationController
   def start_response?(body)
     sanitized = body.downcase
     return true if sanitized === 'start' || sanitized === 'yes'
+  end
+
+  def new_user?(number)
+    return true if User.find_by_phone_number(number) == nil
+  end
+
+  def property_respose?(body)
+    sanitized_body = body.downcase
+    return true unless Property.find_by_response_code(sanitized_body) == nil
   end
 end

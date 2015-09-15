@@ -8,21 +8,6 @@ module SmsHelper
   
   @@client = Twilio::REST::Client.new ENV['TWILIO_ACCOUNT_SID'], ENV['TWILIO_AUTH_TOKEN']
 
-  ###########
-  # Helper method to check if the number texting Twilio is a new number to the system
-  ###########
-  def new_user?(number)
-    return true if User.find_by_phone_number(number) == nil
-  end
-
-  ###########
-  # Helper method to check if the users text is in response to a property
-  ###########
-  def property_respose?(body)
-    sanitized_body = body.downcase
-    return true unless Property.find_by_response_code(sanitized_body) == nil
-  end
-
   ######################## 
   # Helper to create an SMS message (plain text)
   ########################
@@ -213,34 +198,6 @@ module SmsHelper
     sanitized = body.downcase
     return true if sanitized === "fresh start"
     return false
-  end
-
-
-  #####################
-  # create_user method
-  #####################
-  # If a new number texts James, the below method is invoked
-  # This method creates a new user record, and then sends the welcome text along with first question
-  def create_user(params)
-    @user = User.create({
-        phone_number: params[:From],
-        name: params[:Body],
-        city: params[:FromCity],
-        state: params[:FromState]
-      })
-
-    @user.leads.create({})
-
-    welcome_msg = "Hi #{@user.name}, I’m James I’m going to find you space. Just three or four simple questions to start off:"
-    user_num = @user.phone_number
-
-    # send welcome message
-    create_sms_msg(user_num, welcome_msg)
-
-    # send first question
-    create_sms_msg(user_num, @@question_one)
-    create_log(params)
-    render nothing: true
   end
 
   ######################
