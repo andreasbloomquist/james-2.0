@@ -2,12 +2,22 @@ class User < ActiveRecord::Base
   has_many :leads
   has_many :appointments
 
+  @@question_one = "First, where are you looking- give me one or more neighborhoods: SOMA, FiDi, the Mission, Jackson Square"
+
   def update_to_inactive
     update_column(:is_inactive, true)
   end
 
   def update_to_active
     update_column(:is_inactive, false)
+  end
+
+  def new_lead
+    leads.create({})
+
+    new_start_msg = 'Got it, you want to start over, not a problem!' 
+    create_sms_msg(phone_number, new_start_msg)
+    create_sms_msg(phone_number, @@question_one)
   end
 
   def self.create_user(params)
@@ -25,11 +35,8 @@ class User < ActiveRecord::Base
     # # send welcome message
     @user.create_sms_msg(@user.phone_number, welcome_msg)
 
-    @@question_one = "First, where are you looking- give me one or more neighborhoods: SOMA, FiDi, the Mission, Jackson Square"
-
     # # send first question
     @user.create_sms_msg(@user.phone_number, @@question_one)
-    # create_log(params)
   end
 
   @@client = Twilio::REST::Client.new ENV['TWILIO_ACCOUNT_SID'], ENV['TWILIO_AUTH_TOKEN']

@@ -95,7 +95,7 @@ module SmsHelper
     ############
     # Hard coding questions that Twilio will send depending on the last question answered
     ######################################################################################
-
+    @@question_one = "First, where are you looking- give me one or more neighborhoods: SOMA, FiDi, the Mission, Jackson Square"
     @question_two = 'Ok, and how many people do you need space for?'
     @question_three = 'Do you want a creative/tech or more traditional feel?'
     @question_four = "And when do you need it by? Please give me a date ex: '9/1/15'"
@@ -168,36 +168,12 @@ module SmsHelper
       create_sms_msg(number, @sending_to_broker)
       create_sms_msg(number, @additional_info)
       trigger_lead(@user_lead)
-
-
       return render nothing: true
     else
       response_msg = "Hmm, I didn't quite get that, but it looks like you have an open request and our brokers are on it! If you want to submit a new request or start over, just reply 'fresh start'"
       create_sms_msg(number, response_msg)
       render nothing: true
     end
-  end
-  ##########################
-  # Start lead process fresh if user texts "fresh start"
-  ##########################
-  
-  @@question_one = "First, where are you looking- give me one or more neighborhoods: SOMA, FiDi, the Mission, Jackson Square"
-
-  def start_fresh_lead(number)
-    user = User.find_by_phone_number(number)
-    user.leads.create({})
-
-    fresh_msg = "Got it, everyone deserves a fresh start from time to time!"
-
-    create_sms_msg(user.phone_number, fresh_msg)
-    create_sms_msg(user.phone_number, @@question_one)
-    render nothing: true
-  end
-
-  def fresh_start?(body)
-    sanitized = body.downcase
-    return true if sanitized === "fresh start"
-    return false
   end
 
   ######################
@@ -274,21 +250,6 @@ module SmsHelper
         create_mms_msg(to, prop)
       end
     end
-  end
-
-  #############
-  # EASTER EGG
-  #############
-  def easter?(body)
-    sanitized = body.downcase
-    return true if sanitized == 'hired'
-    return false
-  end
-
-  def send_easter_egg(number)
-    easter_msg = "Thanks for taking the time to say hello, it was great to meet you! Here's a link to my site www.andreasbloomquist.com"
-    create_sms_msg number, easter_msg
-    render nothing: true
   end
 
 end
