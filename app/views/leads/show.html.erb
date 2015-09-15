@@ -1,3 +1,11 @@
+<% if @lead.user.is_inactive? %>
+  <div class="row">
+    <div class="small-12 large-10 large-centered columns">
+      <p class="">This user has unsubscribed from James, and is no longer receiving SMS messages. If you submit a property using the form below, the user will only receive this info if they choose to re-subscribe</p>
+    </div>
+  </div>
+<% end %>
+
 <div class="row">
   <div class="small-12 large-10 large-centered columns">
     <div class="lead-header" id="lead-response">

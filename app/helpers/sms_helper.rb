@@ -116,7 +116,8 @@ module SmsHelper
     @question_four = "And when do you need it by? Please give me a date ex: '9/1/15'"
     @question_five = "Sounds good. How long do you think you'll need the space for? Year or less, 1-3 years, or more than 3 years?"
     @question_six = 'Great! Finally, respond with any notes or special requests and my brokers will get right on this!'
-    @sending_to_broker = 'I have a team of brokers on this right now, so hang tight! I’ll reach out very soon with more info, no need to reply to this text'
+    @sending_to_broker = 'I have a team of brokers specializing in this type of space on this right now, so hang tight! I’ll reach out very soon with more info, no need to reply to this text'
+    @additional_info = 'In the meantime, a few things. James endeavors to serve you only the freshest market information. Just like the spaces James feeds you, sometimes your query can go stale. To re-submit your last set of criteria for fresh spaces, just type resubmit at any time. To start a new search, text start over. Finally, to stop receiving all texts from James forever, just text James at any time with the word stop.'
 
     #################
     # QUESTIONS HASH
@@ -180,7 +181,10 @@ module SmsHelper
         response_url: SecureRandom.uuid
         })
       create_sms_msg(number, @sending_to_broker)
+      create_sms_msg(number, @additional_info)
       trigger_lead(@user_lead)
+
+
       return render nothing: true
     else
       response_msg = "Hmm, I didn't quite get that, but it looks like you have an open request and our brokers are on it! If you want to submit a new request or start over, just reply 'fresh start'"
