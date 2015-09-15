@@ -261,8 +261,12 @@ module SmsHelper
     # Send details of property
     create_sms_msg(to, property_details_msg)
     sleep 1
+
     # Send broker notes
-    create_sms_msg(to, broker_msg)
+    if property.description?
+      create_sms_msg(to, broker_msg)
+    end
+
     sleep 1
     create_sms_msg(to, response_code_msg)
     sleep 1
@@ -297,8 +301,12 @@ module SmsHelper
       # Send details of property
       create_sms_msg(to, property_details_msg)
       sleep 2
+      
       # Send notes from broker
-      create_sms_msg(to, broker_msg)
+      if prop.description?
+        create_sms_msg(to, broker_msg)
+      end
+
       sleep 1
 
       create_sms_msg(to, response_code_msg)
