@@ -170,7 +170,7 @@ module SmsHelper
       trigger_lead(@user_lead)
       return render nothing: true
     else
-      response_msg = "Hmm, I didn't quite get that, but it looks like you have an open request and our brokers are on it! If you want to submit a new request or start over, just reply 'fresh start'"
+      response_msg = "Hmm, I didn't quite get that, but it looks like you have an open request and our brokers are on it! For additional information and help reply back with 'help me'"
       create_sms_msg(number, response_msg)
       render nothing: true
     end
