@@ -3,9 +3,9 @@ class SmsController < ApplicationController
   include SmsHelper
   include AppointmentsHelper
   include LeadsHelper
-  
-  after_filter :set_header
  
+  after_filter :set_header
+
   skip_before_action :verify_authenticity_token
 
   def received
@@ -15,6 +15,14 @@ class SmsController < ApplicationController
           
     if new_user?(sender)
       User.create_user(params)
+      render nothing: true
+
+    elsif resubmit_response? @body
+      User.find_by_phone_number(sender).resubmit_last_lead
+      render nothing: true
+
+    elsif help_me_response? @body
+      User.find_by_phone_number(sender).send_help_sms
       render nothing: true
 
     elsif stop_response? @body
@@ -28,13 +36,13 @@ class SmsController < ApplicationController
     elsif property_respose? @body
       send_property_response(@body, sender)
 
-    elsif start_over?(@body)
+    elsif start_over? @body
       User.find_by_phone_number(sender).new_lead
       render nothing: true
 
     elsif responding_to_appointment?(sender, @body) && lead_complete?(sender)
       appt_confirmation(sender, @body)
-      
+
     else
       send_user_questions sender, @body
     end
@@ -65,5 +73,15 @@ class SmsController < ApplicationController
     sanitized = body.downcase
     return true if sanitized === "start over"
     return false
+  end
+
+  def help_me_response?(body)
+    sanitized = body.downcase
+    return true if sanitized === "help me"
+  end
+
+  def resubmit_response?(body)
+    sanitized = body.downcase
+    return true if sanitized === "resubmit"
   end
 end
