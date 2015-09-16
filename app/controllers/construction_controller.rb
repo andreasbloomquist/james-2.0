@@ -1,4 +1,5 @@
 class ConstructionController < ApplicationController
+  
   def index
     @construction = Construction.new()
   end

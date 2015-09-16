@@ -33,6 +33,9 @@ fieldset.hour, fieldset.minute{
     color: black;
   }
 }
+#authCode{
+  background-color: $blue;
+}
 .message{
   color: $red;
   background-color: rgba(255, 255, 255, 0.6);
