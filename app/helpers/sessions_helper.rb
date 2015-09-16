@@ -21,7 +21,7 @@ module SessionsHelper
   def set_broker_cookie(broker)
     cookies[:broker_id] = {
       :value => broker,
-      :expires => 1.month.from_now,
+      :expires => 1.month.from_now
       }
   end
 

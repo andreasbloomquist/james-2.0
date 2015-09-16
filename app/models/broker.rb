@@ -10,6 +10,7 @@ class Broker < ActiveRecord::Base
 
   def set_auth_code
     auth_code = rand(10000)
+    update_column(:auth_code, auth_code)
     auth_message = "Your authorization code is #{auth_code}"
     create_sms_msg(phone_number, auth_message)
   end

@@ -13,9 +13,12 @@ Rails.application.routes.draw do
   get '/admin', to: 'admin#index', as: 'admin'
   get '/login', to: 'sessions#new', as: 'login'
   post '/sessions', to: 'sessions#create'
+
   get '/logout', to: 'sessions#logout', as: 'logout'
   get '/authenticate', to: 'sessions#authenticate_broker', as: 'authenticate_broker'
   post '/authenticate', to: 'sessions#check_broker'
+
+  post '/authorize', to: 'sessions#authorize_broker'
 
   get '/appointments/:availability_url/', to: 'appointments#show', as: 'schedule_appointment'
   get '/appointments/:availability_url/thank-you', to: 'appointments#thank_you', as: 'appointment_submitted'
