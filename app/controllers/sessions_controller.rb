@@ -20,13 +20,31 @@ class SessionsController < ApplicationController
   end
 
   def check_broker
-    @number = "+1#{params[:broker][:phone_number]}"
+    sanitized_number = params[:broker][:phone_number].gsub(/[^0-9]/, "")
+    @number = "+1#{sanitized_number}"
     @broker = Broker.is_broker?(@number)
+
     if @broker
+      @broker.set_auth_code
+      respond_to do |format|
+        format.js
+      end
+    else
+      flash[:success] = "Sorry, we weren't able to find that number"
+      redirect_to authenticate_broker_path
+    end
+  end
+
+  def authorize_broker
+    @broker = Broker.find_by_phone_number(params[:broker])
+    p @broker
+    p params[:authorization_code]
+
+    if @broker.auth_code === params[:authorization_code].to_i
       set_broker_cookie(@broker.id)
       redirect_to respond_to_lead_path(cookies[:lead])
     else
-      flash[:success] = "Sorry, we weren't able to find that number"
+      flash[:success] = "Sorry, that authorization code doesn't match our records."
       redirect_to authenticate_broker_path
     end
   end

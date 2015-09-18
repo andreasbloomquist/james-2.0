@@ -5,17 +5,33 @@
       <div class="medium-6 small-12 small-centered columns">
         <p class="broker-check">Please enter your phone number to verify you're on the list of  brokers. Upon confirming your number you'll be redirected to a form to respond to the lead.</p>
         <p class="broker-check"><strong>Note:</strong> This is a one time validation on this device. You will not need to enter your number again for subsequent leads using this device.</p>
-        <%= form_for @broker, url: '/authenticate', method: 'post' do |f| %>
+        <%= form_for @broker, remote: true, url: '/authenticate', method: 'post', class: "test" do |f| %>
           <%= f.label "Phone Numer*" %>
-          <%= f.telephone_field :phone_number, required: true, class: "prop-form", required: true %>
+          <%= f.telephone_field :phone_number, required: true, class: "prop-form brokerNumber", required: true %>
           <div class="row">
             <div class="small-4 medium-4 small-centered large-centered columns">
-              <%= f.button "Submit", class: "button cust-btn" %>
+              <%= f.button "Submit", class: "button cust-btn brokerAuthBtn" %>
             </div>
           </div>
-          
         <% end %>
       </div> 
+    </div>
+
+    <div id="authCode" class="reveal-modal small" data-reveal aria-labelledby="modalTitle" aria-hidden="true" role="dialog">
+      <h2 class="broker-check">Enter Code</h2>
+      
+      <%= form_tag '/authorize', method: 'post' do %>
+        <%= label_tag :authorization_code %>
+        <%= telephone_field_tag :authorization_code, nil, class: "prop-form" %>
+        <%= hidden_field_tag :broker, nil, class: "prop-form" %>
+        <div class="row">
+          <div class="small-4 medium-4 small-centered large-centered columns">
+            <%= button_tag :submit, class: "button cust-btn" %>
+          </div>
+        </div>
+      <% end %>
+      
+      <a class="close-reveal-modal cust-x" aria-label="Close">&#215;</a>
     </div>
   </div>
 </div>
